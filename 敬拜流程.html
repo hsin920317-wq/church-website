@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>興雅三一堂</title>
+    <style>
+      body {
+        background-image: url('F:/興雅三一堂網站/雲圖片.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        color: #333;
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      header {
+        color: #333;
+        max-width: 3000px;
+        max-height: 105px;
+        margin-bottom: 10px;
+        margin-top: 1px;
+      }
+
+      header h1 {
+        margin-left: 110px;
+        margin-right: 10px;
+        margin-top: -5px;
+        line-height: 90px;
+      }
+
+      #logo {
+        max-width: 120px;
+        max-height: 120px;
+        margin-bottom: 12px;
+        margin-top: -125px;
+        margin-left: 0px;
+      }
+
+      nav {
+        background-color: #555;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+      }
+
+      nav li {
+        display: inline-block;
+        position: relative;
+        margin: 0 10px;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        display: block;
+        font-size: 18px;
+      }
+
+      nav li:hover > a {
+        background-color: #333;
+      }
+
+      /* 子選單樣式 */
+      nav li ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #555;
+        padding: 0;
+        z-index: 999;
+        min-width: 160px;
+      }
+
+      nav li:hover ul {
+        display: block;
+      }
+
+      nav li ul li {
+        display: block;
+      }
+
+      nav li ul li a {
+        padding: 10px;
+        text-align: left;
+      }
+
+      nav li ul li a:hover {
+        background-color: #333;
+      }
+
+      .content {
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 1400px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><a href="教會網站.html">興雅三一堂</a></h1>
+      <img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="教會網站.html">教會主頁</a></li>
+
+        <li>
+          <a href="關於我們.html">關於我們</a>
+          <ul>
+            <li><a href="牧師名單.html">牧師名單</a></li>
+            <li><a href="教會場地.html">教會場地</a></li>
+            <li><a href="敬拜流程.html">敬拜流程</a></li>
+            <li><a href="外聘講員.html">外聘講員</a></li>
+          </ul>
+        </li>
+
+        <li><a href="報告事項.html">報告事項</a></li>
+
+        <li>
+          <a href="有關教會服務.html">有關教會服務</a>
+          <ul>
+            <li><a href="代禱.html">代禱</a></li>
+            <li><a href="奉獻.html">奉獻</a></li>
+            <li><a href="其他方面.html">其他方面</a></li>
+          </ul>
+        </li>
+
+        <li><a href="聯繫我們.html">聯繫我們</a></li>
+      </ul>
+    </nav>
+    <div class="content">
+      <h2>歡迎來到興雅三一堂網站</h2>
+      <p>星期五</p>
+	  <p>7:30 pm 開始晚上禱告會</p>
+	  <p>唱詩</p>
+	  <p>講道</p>
+	  <p>禱告</p>
+	  <p>奉獻禱告</p>
+	  <p>奉獻</p>
+	  <p>奉獻祝福</p>
+	  <p>最後祝禱</p>
+	  <p>主禱文</p>
+	  <p><br></br></p>
+	  <p><br></br></p>
+	  <p>星期天</p>
+	  <p>10:00 am 開始主日崇拜</p>
+	  <p>宣召</p>
+	  <p>信仰宣告</p>
+	  <p>敬拜讚美</p>
+	  <p>主日學開始</p>
+	  <p>讀經</p>
+	  <p>牧師證道</p>
+	  <p>聖餐(第一禮拜才會有)</p>
+	  <p>奉獻禱告</p>
+	  <p>奉獻(讚美詩歌本第383或384首)</p>
+	  <p>奉獻祝福</p>
+	  <p>迎新(如果有新的弟兄姊妹)</p>
+	  <p>報告事項</p>
+	  <p>頌榮(讚美詩歌本11首)</p>
+	  <p>祝禱</p>
+	  <p>阿門頌</p>
+	  
+      <!-- 在這裡添加更多內容 -->
+    </div>
+	<div id="ai-helper" style="border:1px solid #ccc; padding:10px; max-width:400px; background:#f9f9f9; border-radius:8px;">
+		<h3>AI 小助手</h3>
+		<div id="chat-box" style="height:150px; overflow-y:auto; border:1px solid #ddd; padding:8px; background:#fff; margin-bottom:8px;"></div>
+		<input type="text" id="user-input" placeholder="請輸入您的問題..." style="width:calc(100% - 70px); padding:6px;"/>
+		<button id="send-btn" style="width:60px;">送出</button>
+	</div>
+
+	<script>
+		const chatBox = document.getElementById('chat-box');
+		const userInput = document.getElementById('user-input');
+		const sendBtn = document.getElementById('send-btn');
+
+		function appendMessage(sender, text) {
+		const msgDiv = document.createElement('div');
+		msgDiv.style.marginBottom = '6px';
+		msgDiv.style.padding = '6px';
+		msgDiv.style.borderRadius = '5px';
+		if(sender === 'user') {
+			msgDiv.style.backgroundColor = '#d0e7ff';
+			msgDiv.style.textAlign = 'right';
+			msgDiv.textContent = '你：' + text;
+		} else {
+			msgDiv.style.backgroundColor = '#e6e6e6';
+			msgDiv.style.textAlign = 'left';
+			msgDiv.textContent = 'AI：' + text;
+		}
+		chatBox.appendChild(msgDiv);
+		chatBox.scrollTop = chatBox.scrollHeight;
+	}
+
+	function getAIResponse(question) {
+    // 這裡可以換成串接 API，先用簡單固定回應模擬
+    const lower = question.toLowerCase();
+    if(lower.includes('聚會時間') || lower.includes('時間')) {
+      return '我們的主日聚會時間是每週日上午10點喔，邀請您一起來參加聚會喔~。';
+    } else if(lower.includes('地址')) {
+      return '我們教會地址是台北市中山區松江路259巷33號B1喔，有興趣可以一起來參加聚會喔~。';
+    } else if(lower.includes('聯絡方式')) {
+      return '您可以撥打電話02-2517-6539來聯繫我們喔。'; //或 Email: contact@church.org
+    } else if(lower.includes('代禱')) {
+      return '若需要代禱的話可留下您需要代禱的項目，我們將會為您一同代禱喔~';
+    } else if(lower.includes('過去') || lower.includes('怎麼來') || lower.includes('怎麼走') || lower.includes('交通') || lower.includes('路線')) {
+	  return '您可以搭到行天宮站3號出口，往左邊走進彰化銀行的巷子，再走到一個咖啡廳左轉，就會看到了喔~';
+    } else if(lower.includes('教會名稱') || lower.includes('名稱')) {
+	  return '我們的教會名稱為興雅三一堂，如果您有空，邀請您一同來聚會喔~';
+    } else if(lower.includes('牧師名單') || lower.includes('牧師') || lower.includes('牧師有哪些')) {
+	  return '我們牧師目前有主任牧師林雪瑩牧師，還有蔡主安牧師，有時也會有外聘講員鄭頌苑牧師、黃德福牧師呦~';
+    } else if (lower.includes('聚會流程') || lower.includes('流程') || lower.includes('程序')) {
+	  return '我們的主日聚會從上午10點正式開始；若是敬拜讚美團隊的同工，則會在9點半先行練習。聚會流程是：首先由司會帶領宣召，接著是敬拜讚美時間，然後牧師會講道。如果是每月的第一個主日，會舉行聖餐；4月的第一主日則會進行清明追思。接下來是奉獻時間，若當天有新朋友也會歡迎與介紹。之後我們會唱讚美詩歌本的第11首，最後由牧師祝禱，並唱阿們頌作為結束喔～歡迎您來親身體驗我們的聚會！';
+    } else if (lower.includes('報告事項') || lower.includes('報告') || lower.includes('事項')) {
+	  return '這週的報告事項為：';
+    } else {
+      return '抱歉，我還在學習中，請稍後再問我其他問題吧！！感謝您的詢問，還有想詢問的事項嗎？我知道的話會盡力回覆喔~';
+    }
+  }
+
+  sendBtn.addEventListener('click', () => {
+    const question = userInput.value.trim();
+    if(!question) return;
+    appendMessage('user', question);
+    userInput.value = '';
+    setTimeout(() => {
+      const answer = getAIResponse(question);
+      appendMessage('ai', answer);
+    }, 600);
+  });
+
+  userInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') {
+      sendBtn.click();
+    }
+  });
+</script>	
+    <script>
+      function handleSelect(select) {
+        select.options[0].style.display = 'none';
+      }
+    </script>
+    <script>
+      $(document).ready(function(){
+        var navLinks = $('nav a');
+        navLinks.mouseenter(function(){
+          navLinks.find('select').hide();
+          $(this).find('select').show();
+        });
+      });
+    </script>
+  </body>
+</html>
