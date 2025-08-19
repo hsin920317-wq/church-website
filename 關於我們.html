@@ -107,6 +107,21 @@
         height: 1000px;
       }
 
+	  .marquee-container {
+  		position: absolute; 
+   		top: 0;
+    	left: 50%;                  /* 先把左邊界移到視窗中間 */
+    	transform: translateX(-50%); /* 再把元素本身往左移一半寬度，達到真正置中 */
+    	width: 66%;                  /* 中間三分之二 */
+    	background-color: rgba(255, 255, 255, 0.6);
+    	color: #333;
+    	font-size: 16px;
+    	font-weight: bold;
+    	padding: 5px;
+    	text-align: center;
+    	border-radius: 8px;
+    	z-index: 1000;               /* 確保跑馬燈在最上層 */
+	  }
       @media (max-width: 768px) {
   	body {
     	  font-size: 16px;
@@ -130,6 +145,9 @@
   </head>
   <body>
     <header>
+	  <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+    		📢 歡迎來到興雅三一堂！每週日早上10點都會有主日崇拜，誠摯邀請您參加～
+  	  </marquee>
       <h1><a href="教會網站.html">興雅三一堂</a></h1>
       <img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
     </header>
@@ -271,6 +289,7 @@
   </body>
 
 </html>
+
 
 
 
