@@ -108,18 +108,19 @@
       }
 
 	  .marquee-container {
-  		position: absolute;
-  		top: 0;
-  		left: 0;
-  		width: 66%;              /* 中間的三分之二 */
-  		margin: 0 auto;          /* 讓左右自動平均分配，居中 */
-  		background-color: rgba(255, 255, 255, 0.6);
-  		color: #333;
-  		font-size: 16px;
-  		font-weight: bold;
-  		padding: 5px;
-  		text-align: center;
-  		border-radius: 8px; 
+  		position: absolute; 
+   		top: 0;
+    	left: 50%;                  /* 先把左邊界移到視窗中間 */
+    	transform: translateX(-50%); /* 再把元素本身往左移一半寬度，達到真正置中 */
+    	width: 66%;                  /* 中間三分之二 */
+    	background-color: rgba(255, 255, 255, 0.6);
+    	color: #333;
+    	font-size: 16px;
+    	font-weight: bold;
+    	padding: 5px;
+    	text-align: center;
+    	border-radius: 8px;
+    	z-index: 1000;               /* 確保跑馬燈在最上層 */
 	  }
       @media (max-width: 768px) {
   	body {
@@ -271,6 +272,7 @@
 </script>
   </body>
 </html>
+
 
 
 
