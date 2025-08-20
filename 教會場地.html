@@ -151,17 +151,16 @@
       /* 手機版樣式 */
 @media (max-width: 768px) {
   nav ul {
-  display: none;
-  flex-direction: column;
-  background: rgba(85, 85, 85, 0.95);
-  position: absolute;
-  top: 60px;
-  left: 0;
-  width: calc(100% - 20px); /* 寬度比螢幕少一點 */
-  margin: 0 10px;           /* 左右留 10px 邊距 */
-  border-radius: 8px;       /* 邊角圓滑，看起來更柔和 */
-  overflow: hidden;         /* 避免子選單溢出 */
-}
+    display: none;
+    flex-direction: column;
+    background: rgba(85, 85, 85, 0.95);
+    position: absolute;
+    top: 60px;
+    left: 10px;    /* 左邊距 */
+    right: 10px;   /* 右邊距 */
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
   nav ul.show {
     display: flex; /* 點擊漢堡後顯示 */
@@ -389,6 +388,7 @@
   </body>
 
 </html>
+
 
 
 
