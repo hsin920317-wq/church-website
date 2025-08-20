@@ -158,8 +158,9 @@
     top: 60px; /* 在 nav 下方展開 */
     left: 0;
     width: 100%;
-    padding: 0;
+    padding: 0 15px;   /* ✅ 左右各留 15px */
     margin: 0;
+    box-sizing: border-box; /* ✅ 確保不會超出螢幕 */
   }
 
   nav ul.show {
@@ -366,6 +367,7 @@
   </body>
 
 </html>
+
 
 
 
