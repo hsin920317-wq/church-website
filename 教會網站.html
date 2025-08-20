@@ -312,13 +312,27 @@
     });
 </script>
 <script>
-  // 漢堡選單開合
-  document.querySelector(".hamburger").addEventListener("click", function() {
-    document.querySelector("nav ul").classList.toggle("show");
-  });
-</script>
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector("nav ul");
+
+    // 點 ☰ 打開/收回
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation(); // 避免立刻被「點外面」事件關掉
+      navMenu.classList.toggle("show");
+    });
+
+    // 點空白處收回
+    document.addEventListener("click", function(e) {
+      if (navMenu.classList.contains("show") &&
+          !navMenu.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        navMenu.classList.remove("show");
+      }
+    });
+  </script>
   </body>
 </html>
+
 
 
 
