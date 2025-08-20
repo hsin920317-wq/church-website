@@ -127,6 +127,26 @@
   	  .hamburger {
   		display: none;
   	  }
+
+	  .image-wrapper {
+  		display: flex;
+  		flex-direction: column; /* 上下排列 */
+  		align-items: center;    /* 文字置中對齊圖片 */
+  		width: 600px;
+  		margin: 20px;
+	  }
+
+	  .image-wrapper img {
+  		width: 100%;
+ 		height: auto;
+  		border-radius: 8px;
+	  }
+
+	  .image-wrapper .caption {
+  		margin-top: 5px;
+  		font-size: 16px;
+  		font-weight: bold;
+	  }
 		
       /* 手機版樣式 */
 @media (max-width: 768px) {
@@ -177,10 +197,11 @@
     text-align: right;
   }
 
-  #courtyard-img {
-    max-width: 100%;   /* 手機版就全滿 */
-    margin: 10px auto;
-  }
+  .image-wrapper img {
+  width: 100%;
+  height: auto;
+  }	
+
 }
     </style>
   </head>
@@ -223,12 +244,12 @@
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>教會目前位於B1(地下一樓)，主要有做禮拜的禮拜堂，還有一個中庭，供大家中午吃飯，供弟兄姊妹交流。</p>
-	  <img id="prayer-img" src="中庭.jpg" 
-     	width="600" 
-     	height="450" 
-     	style="display:block; margin:20px auto; border-radius:8px;" 
-     	alt="中庭" />
-	  <p>中庭</p>
+	  <div class="courtyard-section">
+  		<div class="image-wrapper">
+    		<img id="courtyard-img" src="中庭.jpg" alt="中庭" />
+    		<p class="caption">中庭</p>
+ 	 	</div>
+	  </div>
 	  
       <!-- 在這裡添加更多內容 -->
     </div>
@@ -341,6 +362,7 @@
   </body>
 
 </html>
+
 
 
 
