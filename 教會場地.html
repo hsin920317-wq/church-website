@@ -123,14 +123,6 @@
     	z-index: 1000;               /* 確保跑馬燈在最上層 */
 	  }
 
-	  #courtyard-img {
-  		display: block;
-  		margin: 20px auto;       /* 置中 */
-  		width: 100%;             /* 手機自動縮放到父框寬度 */
-  		max-width: 66%;          /* 桌機最大寬度跟跑馬燈一樣 */
-  		height: auto;            /* 高度自動保持比例 */
-	  }
-
       /* 桌機版隱藏漢堡按鈕 */
   	  .hamburger {
   		display: none;
@@ -231,7 +223,11 @@
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>教會目前位於B1(地下一樓)，主要有做禮拜的禮拜堂，還有一個中庭，供大家中午吃飯，供弟兄姊妹交流。</p>
-	  <img id="courtyard-img" src="中庭.jpg" style="margin-top: 20px; max-width: 100%; height: auto;" alt="中庭" />
+	  <img id="prayer-img" src="中庭.jpg" 
+     	width="600" 
+     	height="450" 
+     	style="display:block; margin:20px auto; border-radius:8px;" 
+     	alt="中庭" />
 	  <p>中庭</p>
 	  
       <!-- 在這裡添加更多內容 -->
@@ -345,6 +341,7 @@
   </body>
 
 </html>
+
 
 
 
