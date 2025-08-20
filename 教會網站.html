@@ -131,15 +131,15 @@
       /* 手機版樣式 */
 @media (max-width: 768px) {
   nav ul {
-    display: none; /* 預設隱藏選單 */
-    flex-direction: column; /* 改成垂直排列 */
-    background: rgba(85, 85, 85, 0.95); /* 深灰背景 */
+    display: none;
+    flex-direction: column;
+    background: rgba(85, 85, 85, 0.95);
     position: absolute;
-    top: 60px; /* 在 nav 下方展開 */
-    left: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+    top: 60px;
+    left: 10px;   /* 左邊留 10px */
+    right: 10px;  /* 右邊留 10px */
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   nav ul.show {
@@ -332,6 +332,7 @@
   </script>
   </body>
 </html>
+
 
 
 
