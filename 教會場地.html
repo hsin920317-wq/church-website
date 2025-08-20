@@ -226,6 +226,21 @@
   	border-radius: 8px;
   	box-sizing: border-box;
   }
+
+  .nav-inner {
+    position: absolute;
+    top: 60px;          /* 在 nav 下方 */
+    left: 10px;         /* 左邊留 10px */
+    right: 10px;        /* 右邊留 10px */
+    background: rgba(85, 85, 85, 0.95);
+    border-radius: 8px;
+    overflow: hidden;
+    display: none;      /* 預設隱藏，漢堡點開才顯示 */
+  }
+
+  .nav-inner ul li a {
+    padding: 10px;      /* 子選單內間距 */
+  }
 }
 
 }
@@ -244,29 +259,31 @@
 
     <nav>
   <div class="hamburger">☰</div>
-  <ul>
-    <li><a href="教會網站.html">教會主頁</a></li>
-    <li>
-      <a href="關於我們.html">關於我們</a>
-      <ul>
-        <li><a href="牧師名單.html">牧師名單</a></li>
-        <li><a href="教會場地.html">教會場地</a></li>
-        <li><a href="敬拜流程.html">敬拜流程</a></li>
-        <li><a href="外聘講員.html">外聘講員</a></li>
-      </ul>
-    </li>
-    <li><a href="報告事項.html">報告事項</a></li>
-    <li>
-      <a href="有關教會服務.html">有關教會服務</a>
-      <ul>
-        <li><a href="代禱.html">代禱</a></li>
-        <li><a href="奉獻.html">奉獻</a></li>
-        <li><a href="其他方面.html">其他方面</a></li>
-      </ul>
-    </li>
-    <li><a href="聯繫我們.html">聯繫我們</a></li>
-  	</ul>
-	</nav>
+  <div class="nav-inner">
+    <ul>
+      <li><a href="教會網站.html">教會主頁</a></li>
+      <li>
+        <a href="關於我們.html">關於我們</a>
+        <ul>
+          <li><a href="牧師名單.html">牧師名單</a></li>
+          <li><a href="教會場地.html">教會場地</a></li>
+          <li><a href="敬拜流程.html">敬拜流程</a></li>
+          <li><a href="外聘講員.html">外聘講員</a></li>
+        </ul>
+      </li>
+      <li><a href="報告事項.html">報告事項</a></li>
+      <li>
+        <a href="有關教會服務.html">有關教會服務</a>
+        <ul>
+          <li><a href="代禱.html">代禱</a></li>
+          <li><a href="奉獻.html">奉獻</a></li>
+          <li><a href="其他方面.html">其他方面</a></li>
+        </ul>
+      </li>
+      <li><a href="聯繫我們.html">聯繫我們</a></li>
+    </ul>
+  </div>
+</nav>
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>教會目前位於B1(地下一樓)，主要有做禮拜的禮拜堂，還有一個中庭，供大家中午吃飯，供弟兄姊妹交流。</p>
@@ -385,9 +402,22 @@
       }
     });
   </script>
+  <script>
+	  const hamburger = document.querySelector(".hamburger");
+	  const navInner = document.querySelector(".nav-inner");
+
+	  hamburger.addEventListener("click", () => {
+  	  if (navInner.style.display === "block") {
+    	navInner.style.display = "none";
+  	  } else {
+    	navInner.style.display = "block";
+  	  }
+	});
+  </script>
   </body>
 
 </html>
+
 
 
 
