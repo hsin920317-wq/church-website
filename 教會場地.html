@@ -157,9 +157,10 @@
     position: absolute;
     top: 60px; /* 在 nav 下方展開 */
     left: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     padding: 0 15px;   /* ✅ 左右各留 15px */
-    margin: 0;
+    margin: 0 10px;
+	border-radius: 8px;
     box-sizing: border-box; /* ✅ 確保不會超出螢幕 */
   }
 
@@ -187,6 +188,11 @@
   nav li ul li a {
     padding-left: 30px; /* 縮排 */
   }
+	
+  nav ul li a {
+    padding: 6px 10px;   /* 原本可能是 10px 以上，縮小一點 */
+    font-size: 14px;     /* 字體也縮小 */
+  }
 
   /* 漢堡按鈕 */
   .hamburger {
@@ -211,6 +217,16 @@
     margin: 0 10px;      /* 左右各留 10px 空間 */
     padding: 10px;       /* 框內部留點空間，看起來不擠 */
     box-sizing: border-box; /* 確保 padding 不會撐破框 */
+  }
+
+  #ai-helper {
+ 	margin: 20px auto;   /* 上下 20px、左右自動置中 */
+  	padding: 10px;
+  	max-width: 400px;    /* 保持原本大小 */
+  	background: #f9f9f9;
+  	border: 1px solid #ccc;
+  	border-radius: 8px;
+  	box-sizing: border-box;
   }
 }
 
@@ -374,6 +390,7 @@
   </body>
 
 </html>
+
 
 
 
