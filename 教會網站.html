@@ -122,19 +122,60 @@
     	border-radius: 8px;
     	z-index: 1000;               /* 確保跑馬燈在最上層 */
 	  }
-      @media (max-width: 768px) {
-  	body {
-    	  font-size: 16px;
-          padding: 10px;
-      }
+      /* 手機版樣式 */
+@media (max-width: 768px) {
+  nav ul {
+    display: none; /* 預設隱藏選單 */
+    flex-direction: column; /* 改成垂直排列 */
+    background: rgba(85, 85, 85, 0.95); /* 深灰背景 */
+    position: absolute;
+    top: 60px; /* 在 nav 下方展開 */
+    left: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
 
-      .menu {
-        flex-direction: column;
-      }
+  nav ul.show {
+    display: flex; /* 點擊漢堡後顯示 */
+  }
 
-      .banner img {
-        width: 100%;
-      }
+  nav li {
+    display: block;
+    margin: 0;
+  }
+
+  nav a {
+    padding: 15px;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  /* 子選單縮排 */
+  nav li ul {
+    position: static;
+    background: #666;
+  }
+
+  nav li ul li a {
+    padding-left: 30px; /* 縮排 */
+  }
+
+  /* 漢堡按鈕 */
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 28px;
+    color: white;
+    padding: 10px 20px;
+    text-align: right;
+  }
+}
+
+/* 桌機版隱藏漢堡按鈕 */
+  .hamburger {
+  display: none;
+  }
     </style>
   </head>
   <body>
@@ -149,33 +190,31 @@
     </header>
 
     <nav>
+  <div class="hamburger">☰</div>
+  <ul>
+    <li><a href="教會網站.html">教會主頁</a></li>
+    <li>
+      <a href="關於我們.html">關於我們</a>
       <ul>
-        <li><a href="教會網站.html">教會主頁</a></li>
-
-        <li>
-          <a href="關於我們.html">關於我們</a>
-          <ul>
-            <li><a href="牧師名單.html">牧師名單</a></li>
-            <li><a href="教會場地.html">教會場地</a></li>
-            <li><a href="敬拜流程.html">敬拜流程</a></li>
-            <li><a href="外聘講員.html">外聘講員</a></li>
-          </ul>
-        </li>
-
-        <li><a href="報告事項.html">報告事項</a></li>
-
-        <li>
-          <a href="有關教會服務.html">有關教會服務</a>
-          <ul>
-            <li><a href="代禱.html">代禱</a></li>
-            <li><a href="奉獻.html">奉獻</a></li>
-            <li><a href="其他方面.html">其他方面</a></li>
-          </ul>
-        </li>
-
-        <li><a href="聯繫我們.html">聯繫我們</a></li>
+        <li><a href="牧師名單.html">牧師名單</a></li>
+        <li><a href="教會場地.html">教會場地</a></li>
+        <li><a href="敬拜流程.html">敬拜流程</a></li>
+        <li><a href="外聘講員.html">外聘講員</a></li>
       </ul>
-    </nav>
+    </li>
+    <li><a href="報告事項.html">報告事項</a></li>
+    <li>
+      <a href="有關教會服務.html">有關教會服務</a>
+      <ul>
+        <li><a href="代禱.html">代禱</a></li>
+        <li><a href="奉獻.html">奉獻</a></li>
+        <li><a href="其他方面.html">其他方面</a></li>
+      </ul>
+    </li>
+    <li><a href="聯繫我們.html">聯繫我們</a></li>
+  	</ul>
+	</nav>
+
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>您有什麼心靈上的需求都可以跟我們分享，我們很樂於傾聽，並提供適當的協助！</p>
@@ -270,8 +309,15 @@
         });
     });
 </script>
+<script>
+  // 漢堡選單開合
+  document.querySelector(".hamburger").addEventListener("click", function() {
+    document.querySelector("nav ul").classList.toggle("show");
+  });
+</script>
   </body>
 </html>
+
 
 
 
