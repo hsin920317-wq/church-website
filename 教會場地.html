@@ -205,6 +205,13 @@
   .caption {
     font-size: 16px;   /* 手機字稍微小一點 */
   }
+
+  .content {
+    width: auto;         /* 不要強制滿版 */
+    margin: 0 10px;      /* 左右各留 10px 空間 */
+    padding: 10px;       /* 框內部留點空間，看起來不擠 */
+    box-sizing: border-box; /* 確保 padding 不會撐破框 */
+  }
 }
 
 }
@@ -367,6 +374,7 @@
   </body>
 
 </html>
+
 
 
 
