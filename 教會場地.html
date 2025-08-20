@@ -151,18 +151,17 @@
       /* 手機版樣式 */
 @media (max-width: 768px) {
   nav ul {
-    display: none; /* 預設隱藏選單 */
-    flex-direction: column; /* 改成垂直排列 */
-    background: rgba(85, 85, 85, 0.95); /* 深灰背景 */
-    position: absolute;
-    top: 60px; /* 在 nav 下方展開 */
-    left: 0;
-    width: calc(100% - 20px);
-    padding: 0 15px;   /* ✅ 左右各留 15px */
-    margin: 0 10px;
-	border-radius: 8px;
-    box-sizing: border-box; /* ✅ 確保不會超出螢幕 */
-  }
+  display: none;
+  flex-direction: column;
+  background: rgba(85, 85, 85, 0.95);
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: calc(100% - 20px); /* 寬度比螢幕少一點 */
+  margin: 0 10px;           /* 左右留 10px 邊距 */
+  border-radius: 8px;       /* 邊角圓滑，看起來更柔和 */
+  overflow: hidden;         /* 避免子選單溢出 */
+}
 
   nav ul.show {
     display: flex; /* 點擊漢堡後顯示 */
@@ -390,6 +389,7 @@
   </body>
 
 </html>
+
 
 
 
