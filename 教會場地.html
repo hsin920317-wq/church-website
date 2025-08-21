@@ -217,22 +217,34 @@
   box-sizing: border-box;
 }
 
-/* ✅ 中庭圖片縮小 + 置中 */
-.courtyard-section .image-wrapper img {
-  display: block;
-  max-width: 100%;   /* 相對於外層 .content，而不是螢幕 */
-  height: auto;
-  margin: 0 auto;    /* 水平置中 */
-  border-radius: 10px;
+/* 限制圖片區塊跟著白框大小走 */
+.courtyard-section {
+  text-align: center;   /* 讓裡面的東西置中 */
+  margin: 20px 0;
+}
+
+.courtyard-section .image-wrapper {
+  max-width: 100%;      /* 限制在白框裡 */
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* ✅ 中庭文字置中 */
+/* 中庭圖片 */
+.courtyard-section .image-wrapper img {
+  width: 100%;          /* 滿版在白框內，但不會超過白框 */
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* 中庭文字 */
 .courtyard-section .caption {
   text-align: center;
   margin-top: 8px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
+  color: #333;
 }
 
 }
@@ -409,6 +421,7 @@
   </body>
 
 </html>
+
 
 
 
