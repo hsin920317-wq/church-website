@@ -151,19 +151,19 @@
       /* 手機版樣式 */
 @media (max-width: 768px) {
   nav ul {
-    display: none;
+    display: none; /* 預設隱藏 */
     flex-direction: column;
     background: rgba(85, 85, 85, 0.95);
     position: absolute;
     top: 60px;
-    left: 10px;   /* 左邊留 10px */
-    right: 10px;  /* 右邊留 10px */
+    left: 10px;   /* 左邊留白 */
+    right: 10px;  /* 右邊留白 */
     border-radius: 8px;
     overflow: hidden;
   }
 
   nav ul.show {
-    display: flex; /* 點擊漢堡後顯示 */
+    display: flex; /* 點擊漢堡後展開 */
   }
 
   nav li {
@@ -198,23 +198,41 @@
   }
 }
 
-  
-   .content {
-    width: auto;         /* 不要強制滿版 */
-    margin: 0 10px;      /* 左右各留 10px 空間 */
-    padding: 10px;       /* 框內部留點空間，看起來不擠 */
-    box-sizing: border-box; /* 確保 padding 不會撐破框 */
-  }
+/* 白框內容 */
+.content {
+  width: auto;
+  margin: 0 10px;      /* 左右留白 */
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-  #ai-helper {
- 	margin: 20px auto;   /* 上下 20px、左右自動置中 */
-  	padding: 10px;
-  	max-width: 400px;    /* 保持原本大小 */
-  	background: #f9f9f9;
-  	border: 1px solid #ccc;
-  	border-radius: 8px;
-  	box-sizing: border-box;
-  }
+/* AI 小助手框 */
+#ai-helper {
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 400px;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* ✅ 中庭圖片縮小 + 置中 */
+.courtyard img {
+  display: block;
+  max-width: 90%;   /* 限制圖片不要滿版 */
+  height: auto;
+  margin: 0 auto;   /* 水平置中 */
+  border-radius: 10px; /* 可選，讓圖片邊角柔和 */
+}
+
+/* ✅ 中庭文字置中 */
+.courtyard p {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
 
 }
 
@@ -390,6 +408,7 @@
   </body>
 
 </html>
+
 
 
 
