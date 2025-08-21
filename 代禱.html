@@ -372,10 +372,23 @@
         navMenu.classList.remove("show");
       }
     });
-  </script>  
+  </script>
+  <script>
+	  const hamburger = document.querySelector(".hamburger");
+	  const navInner = document.querySelector(".nav-inner");
+
+	  hamburger.addEventListener("click", () => {
+  	  if (navInner.style.display === "block") {
+    	navInner.style.display = "none";
+  	  } else {
+    	navInner.style.display = "block";
+  	  }
+	});
+  </script>
   </body>
 
 </html>
+
 
 
 
