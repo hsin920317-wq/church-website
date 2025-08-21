@@ -220,10 +220,11 @@
 /* ✅ 中庭圖片縮小 + 置中 */
 .courtyard-section .image-wrapper img {
   display: block;
-  max-width: 90%;   /* 限制圖片不要滿版 */
+  max-width: 100%;   /* 相對於外層 .content，而不是螢幕 */
   height: auto;
-  margin: 0 auto;   /* 水平置中 */
-  border-radius: 10px; /* 可選，邊角柔和 */
+  margin: 0 auto;    /* 水平置中 */
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 /* ✅ 中庭文字置中 */
@@ -408,6 +409,7 @@
   </body>
 
 </html>
+
 
 
 
