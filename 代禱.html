@@ -130,22 +130,27 @@
 		
       /* 手機版樣式 */
 @media (max-width: 768px) {
+  nav {
+    margin: 0 7px;       /* 左右縮 7px */
+    border-radius: 4px 4px 0 0; /* 上左 上右 下右 下左 直角*/
+    overflow: hidden;     /* 避免子選單突出 */
+  }
+
   nav ul {
-    display: none; /* 預設隱藏選單 */
-    flex-direction: column; /* 改成垂直排列 */
-    background: rgba(85, 85, 85, 0.95); /* 深灰背景 */
+    display: none;        /* 預設隱藏 */
+    flex-direction: column;
+    background: rgba(85, 85, 85, 0.95);
     position: absolute;
-    top: 60px; /* 在 nav 下方展開 */
-    left: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+    top: 60px;
+    left: 0;              /* 從 nav 左邊開始 */
+    right: 0;             /* 到 nav 右邊結束 */
+    border-radius: 0;     /* 這裡不用圓角，交給 nav 控制 */
   }
 
   nav ul.show {
-    display: flex; /* 點擊漢堡後顯示 */
+    display: flex;
   }
-
+	
   nav li {
     display: block;
     margin: 0;
@@ -169,13 +174,33 @@
 
   /* 漢堡按鈕 */
   .hamburger {
-    display: block;
-    cursor: pointer;
-    font-size: 28px;
-    color: white;
-    padding: 10px 20px;
-    text-align: right;
+  	display: block;
+  	cursor: pointer;
+  	font-size: 24px;   /* 字體稍微小一點 */
+  	color: white;
+  	padding: 5px 15px; /* 上下縮小 padding → 灰框高度就變矮 */
+  	text-align: right;
   }
+}
+
+/* 白框內容 */
+.content {
+  width: auto;
+  margin: 0 10px;      /* 左右留白 */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* AI 小助手框 */
+#ai-helper {
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 400px;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
 }
     </style>
   </head>
@@ -351,6 +376,7 @@
   </body>
 
 </html>
+
 
 
 
