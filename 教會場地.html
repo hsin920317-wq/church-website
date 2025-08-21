@@ -150,22 +150,27 @@
 		
       /* 手機版樣式 */
 @media (max-width: 768px) {
+  nav {
+    margin: 0 10px;       /* 左右縮 10px */
+    border-radius: 8px;   /* 跟白框一樣有圓角 */
+    overflow: hidden;     /* 避免子選單突出 */
+  }
+
   nav ul {
-    display: none; /* 預設隱藏 */
+    display: none;        /* 預設隱藏 */
     flex-direction: column;
     background: rgba(85, 85, 85, 0.95);
     position: absolute;
     top: 60px;
-    left: 10px;   /* 左邊留白 */
-    right: 10px;  /* 右邊留白 */
-    border-radius: 8px;
-    overflow: hidden;
+    left: 0;              /* 從 nav 左邊開始 */
+    right: 0;             /* 到 nav 右邊結束 */
+    border-radius: 0;     /* 這裡不用圓角，交給 nav 控制 */
   }
 
   nav ul.show {
-    display: flex; /* 點擊漢堡後展開 */
+    display: flex;
   }
-
+	
   nav li {
     display: block;
     margin: 0;
@@ -421,6 +426,7 @@
   </body>
 
 </html>
+
 
 
 
