@@ -128,25 +128,76 @@
   		display: none;
   	  }
 
-	  .image-wrapper {
-  		display: flex;
-  		flex-direction: column; /* 上下排列 */
-  		align-items: center;    /* 文字置中對齊圖片 */
-  		width: 600px;
-  		margin: 20px;
+	  /* 輪播外框 */
+      .slideshow-wrapper {
+        text-align: center;
+        margin: 20px auto;
+        max-width: 600px;   /* 電腦版寬度 */
+      }
+
+      /* 圖片區塊 */
+      .slideshow {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slides img {
+        width: 100%;
+        flex-shrink: 0;
+        border-radius: 10px;
+      }
+
+      /* 左右按鈕 */
+      .slideshow .prev,
+      .slideshow .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        font-size: 24px;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+	  .slideshow .prev { left: 10px; }
+	  .slideshow .next { right: 10px; }
+
+	  /* 點點導航 */
+	  .slideshow .dots {
+  		text-align: center;
+ 		margin-top: 8px;
 	  }
 
-	  .image-wrapper img {
-  		width: 100%;
- 		height: auto;
-  		border-radius: 8px;
-	  }
+	  .slideshow .dot {
+  		display: inline-block;
+  		width: 10px;
+  		height: 10px;
+  		margin: 0 4px;
+  		background: #bbb;
+  		border-radius: 50%;
+  		cursor: pointer;
+      }
 
-	  .image-wrapper .caption {
-  		margin-top: 5px;
-  		font-size: 16px;
+	  .slideshow .dot.active {
+  		background: #333;
+      }
+
+	  /* 標題文字 */
+      .caption {
+  		margin-top: 10px;
+  		font-size: 18px;
   		font-weight: bold;
 	  }
+
 		
       /* 手機版樣式 */
 @media (max-width: 768px) {
@@ -292,11 +343,40 @@
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>教會目前位於B1(地下一樓)，主要有做禮拜的禮拜堂，還有一個中庭，供大家中午吃飯，供弟兄姊妹交流。</p>
-	  <div class="courtyard-section">
-  		<div class="image-wrapper">
-    		<img id="courtyard-img" src="中庭.jpg" alt="中庭" />
-    		<p class="caption">中庭</p>
- 	 	</div>
+	  <div class="slideshow-wrapper">
+  <div class="slideshow" data-name="courtyard">
+    <div class="slides">
+      <img src="courtyard1.jpg" alt="中庭1">
+      <img src="courtyard2.jpg" alt="中庭2">
+      <img src="courtyard3.jpg" alt="中庭3">
+	  <img src="courtyard4.jpg" alt="中庭4">
+	  <img src="courtyard5.jpg" alt="中庭5">
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+    <div class="dots"></div>
+  </div>
+  <div class="caption">中庭</div>
+</div>
+
+<div class="slideshow-wrapper">
+  <div class="slideshow" data-name="chapel">
+    <div class="slides">
+      <img src="chapel1.jpg" alt="禮拜堂1">
+      <img src="chapel2.jpg" alt="禮拜堂2">
+	  <img src="chapel3.jpg" alt="禮拜堂3">
+	  <img src="chapel4.jpg" alt="禮拜堂4">
+	  <img src="chapel5.jpg" alt="禮拜堂5">	
+	  <img src="chapel6.jpg" alt="禮拜堂6">
+	  <img src="chapel7.jpg" alt="禮拜堂7">
+	  <img src="chapel8.jpg" alt="禮拜堂8">
+    	</div>
+    	<button class="prev">❮</button>
+    	<button class="next">❯</button>
+    	<div class="dots"></div>
+  		</div>
+  		  <div class="caption">禮拜堂</div>
+		</div>
 	  </div>
 	  
       <!-- 在這裡添加更多內容 -->
@@ -419,9 +499,50 @@
   	  }
 	});
   </script>
+  <script>
+	  document.querySelectorAll(".slideshow").forEach(slideshow => {
+  	  const slides = slideshow.querySelector(".slides");
+  	  const images = slideshow.querySelectorAll("img");
+      const prev = slideshow.querySelector(".prev");
+      const next = slideshow.querySelector(".next");
+      const dotsContainer = slideshow.querySelector(".dots");
+      let index = 0;
+
+  // 建立小圓點
+  images.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      index = i;
+      updateSlide();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll(".dot");
+
+  	function updateSlide() {
+    	slides.style.transform = `translateX(${-index * 100}%)`;
+    	dots.forEach(d => d.classList.remove("active"));
+    	dots[index].classList.add("active");
+   }
+
+  	prev.addEventListener("click", () => {
+    	index = (index - 1 + images.length) % images.length;
+    	updateSlide();
+    });
+
+    next.addEventListener("click", () => {
+    	index = (index + 1) % images.length;
+        updateSlide();
+  	});
+  });
+  </script>
   </body>
 
 </html>
+
 
 
 
