@@ -153,49 +153,85 @@
         border-radius: 10px;
       }
 
-      /* 左右按鈕 */
-      .slideshow .prev,
-      .slideshow .next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: rgba(0,0,0,0.5);
-        color: white;
-        border: none;
-        font-size: 24px;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 50%;
+      /* 輪播外框 */
+      .slideshow-wrapper {
+  		text-align: center;
+  		margin: 20px auto;
+  		max-width: 600px;   /* 電腦版寬度 */
+  		position: relative;  /* 方便 caption 絕對定位 */
+	  }
+
+	  /* 圖片區塊 */
+	  .slideshow {
+  		position: relative;
+  		overflow: hidden;
+  		border-radius: 10px;
+	  }
+
+      /* 輪播圖片排列 */
+	  .slides {
+  		display: flex;
+  		transition: transform 0.5s ease-in-out;
+	  }
+
+      .slides img {
+  		width: 100%;
+  		flex-shrink: 0;
+  		border-radius: 10px;
       }
+
+      /* 左右按鈕 */
+	  .slideshow .prev,
+		.slideshow .next {
+  		position: absolute;
+  		top: 50%;
+  		transform: translateY(-50%);
+  		background-color: rgba(0,0,0,0.5);
+  		color: white;
+  		border: none;
+  		font-size: 24px;
+  		padding: 10px;
+  		cursor: pointer;
+  		border-radius: 50%;
+  		z-index: 2;
+	  }
 
 	  .slideshow .prev { left: 10px; }
 	  .slideshow .next { right: 10px; }
 
 	  /* 點點導航 */
-	  .slideshow .dots {
+      .slideshow .dots {
   		text-align: center;
- 		margin-top: 8px;
+  		margin-top: 8px;
 	  }
 
 	  .slideshow .dot {
-  		display: inline-block;
+  	  	display: inline-block;
   		width: 10px;
   		height: 10px;
   		margin: 0 4px;
   		background: #bbb;
   		border-radius: 50%;
   		cursor: pointer;
-      }
+	  }
 
 	  .slideshow .dot.active {
   		background: #333;
-      }
+	  }
 
-	  /* 標題文字 */
-      .caption {
-  		margin-top: 10px;
+	  /* 標題文字 (圖片下方中間) */
+	  .slideshow .caption {
+  		position: absolute;
+  		bottom: 10px;
+  		left: 50%;
+  		transform: translateX(-50%);
+  		color: white;
   		font-size: 18px;
   		font-weight: bold;
+  		text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  		background: rgba(0,0,0,0.2);
+  		padding: 4px 8px;
+  		border-radius: 4px;
 	  }
 
 		
@@ -272,34 +308,21 @@
   	box-sizing: border-box;
   }
 
-  /* 限制圖片區塊跟著白框大小走 */
-  .courtyard-section {
-  	text-align: center;   /* 讓裡面的東西置中 */
-  	margin: 20px 0;
+  .slideshow-wrapper {
+    max-width: 100%;    /* 滿版縮放 */
+    margin: 10px auto;
   }
 
-  .courtyard-section .image-wrapper {
-  	max-width: 100%;      /* 限制在白框裡 */
-  	margin: 0 auto;
-  	box-sizing: border-box;
+  .slideshow .prev,
+  .slideshow .next {
+    font-size: 20px;
+    padding: 8px;
   }
 
-  /* 中庭圖片 */
-  .courtyard-section .image-wrapper img {
-  	width: 100%;          /* 滿版在白框內，但不會超過白框 */
-  	height: auto;
-  	border-radius: 10px;
-  	display: block;
-  	margin: 0 auto;
-  }
-
-  /* 中庭文字 */
-  .courtyard-section .caption {
-  	text-align: center;
-  	margin-top: 8px;
-  	font-size: 18px;
-  	font-weight: bold;
-  	color: #333;
+  .slideshow .caption {
+    font-size: 16px;
+    bottom: 8px;
+    padding: 3px 6px;
   }
 }
     </style>
@@ -346,11 +369,11 @@
 	  <div class="slideshow-wrapper">
   <div class="slideshow" data-name="courtyard">
     <div class="slides">
-      <img src="courtyard1.jpg" alt="中庭1">
-      <img src="courtyard2.jpg" alt="中庭2">
-      <img src="courtyard3.jpg" alt="中庭3">
-	  <img src="courtyard4.jpg" alt="中庭4">
-	  <img src="courtyard5.jpg" alt="中庭5">
+      <img src="中庭1.jpg" alt="中庭1">
+      <img src="中庭2.jpg" alt="中庭2">
+      <img src="中庭3.jpg" alt="中庭3">
+	  <img src="中庭4.jpg" alt="中庭4">
+	  <img src="中庭5.jpg" alt="中庭5">
     </div>
     <button class="prev">❮</button>
     <button class="next">❯</button>
@@ -362,14 +385,14 @@
 <div class="slideshow-wrapper">
   <div class="slideshow" data-name="chapel">
     <div class="slides">
-      <img src="chapel1.jpg" alt="禮拜堂1">
-      <img src="chapel2.jpg" alt="禮拜堂2">
-	  <img src="chapel3.jpg" alt="禮拜堂3">
-	  <img src="chapel4.jpg" alt="禮拜堂4">
-	  <img src="chapel5.jpg" alt="禮拜堂5">	
-	  <img src="chapel6.jpg" alt="禮拜堂6">
-	  <img src="chapel7.jpg" alt="禮拜堂7">
-	  <img src="chapel8.jpg" alt="禮拜堂8">
+      <img src="禮拜堂1.jpg" alt="禮拜堂1">
+      <img src="禮拜堂2.jpg" alt="禮拜堂2">
+	  <img src="禮拜堂3.jpg" alt="禮拜堂3">
+	  <img src="禮拜堂4.jpg" alt="禮拜堂4">
+	  <img src="禮拜堂5.jpg" alt="禮拜堂5">	
+	  <img src="禮拜堂6.jpg" alt="禮拜堂6">
+	  <img src="禮拜堂7.jpg" alt="禮拜堂7">
+	  <img src="禮拜堂8.jpg" alt="禮拜堂8">
     	</div>
     	<button class="prev">❮</button>
     	<button class="next">❯</button>
@@ -542,6 +565,7 @@
   </body>
 
 </html>
+
 
 
 
