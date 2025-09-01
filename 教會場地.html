@@ -130,60 +130,33 @@
 
 	  /* 輪播外框 */
       .slideshow-wrapper {
-        text-align: center;
-        margin: 20px auto;
-        max-width: 600px;   /* 電腦版寬度 */
-      }
-
-      /* 圖片區塊 */
-      .slideshow {
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-      }
-
-      .slides {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-
-      .slides img {
-        width: 100%;
-        flex-shrink: 0;
-        border-radius: 10px;
-      }
-
-      /* 輪播外框 */
-      .slideshow-wrapper {
   		text-align: center;
   		margin: 20px auto;
   		max-width: 600px;   /* 電腦版寬度 */
-  		position: relative;  /* 方便 caption 絕對定位 */
 	  }
 
-	  /* 圖片區塊 */
 	  .slideshow {
-  		position: relative;
+  		position: relative;  /* caption 絕對定位參考 */
   		overflow: hidden;
   		border-radius: 10px;
-	  }
+      }
 
-      /* 輪播圖片排列 */
 	  .slides {
   		display: flex;
   		transition: transform 0.5s ease-in-out;
 	  }
 
-      .slides img {
-  		width: 100%;
+	  .slides img {
+  		width: 100%;           /* 確保不超過白框 */
   		flex-shrink: 0;
   		border-radius: 10px;
-      }
+  		box-sizing: border-box;
+	  }
 
-      /* 左右按鈕 */
+	  /* 左右按鈕 */
 	  .slideshow .prev,
 		.slideshow .next {
-  		position: absolute;
+	    position: absolute;
   		top: 50%;
   		transform: translateY(-50%);
   		background-color: rgba(0,0,0,0.5);
@@ -195,18 +168,16 @@
   		border-radius: 50%;
   		z-index: 2;
 	  }
-
 	  .slideshow .prev { left: 10px; }
 	  .slideshow .next { right: 10px; }
 
 	  /* 點點導航 */
-      .slideshow .dots {
+	  .slideshow .dots {
   		text-align: center;
   		margin-top: 8px;
 	  }
-
 	  .slideshow .dot {
-  	  	display: inline-block;
+ 	 	display: inline-block;
   		width: 10px;
   		height: 10px;
   		margin: 0 4px;
@@ -214,12 +185,9 @@
   		border-radius: 50%;
   		cursor: pointer;
 	  }
+	  .slideshow .dot.active { background: #333; }
 
-	  .slideshow .dot.active {
-  		background: #333;
-	  }
-
-	  /* 標題文字 (圖片下方中間) */
+	  /* caption 置中在圖片下方 */
 	  .slideshow .caption {
   		position: absolute;
   		bottom: 10px;
@@ -232,6 +200,7 @@
   		background: rgba(0,0,0,0.2);
   		padding: 4px 8px;
   		border-radius: 4px;
+  		z-index: 2;
 	  }
 
 		
@@ -308,22 +277,10 @@
   	box-sizing: border-box;
   }
 
-  .slideshow-wrapper {
-    max-width: 100%;    /* 滿版縮放 */
-    margin: 10px auto;
-  }
-
+  .slideshow-wrapper { max-width: 100%; margin: 10px auto; }
   .slideshow .prev,
-  .slideshow .next {
-    font-size: 20px;
-    padding: 8px;
-  }
-
-  .slideshow .caption {
-    font-size: 16px;
-    bottom: 8px;
-    padding: 3px 6px;
-  }
+  .slideshow .next { font-size: 20px; padding: 8px; }
+  .slideshow .caption { font-size: 16px; bottom: 8px; padding: 3px 6px; }
 }
     </style>
   </head>
@@ -366,20 +323,20 @@
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
       <p>教會目前位於B1(地下一樓)，主要有做禮拜的禮拜堂，還有一個中庭，供大家中午吃飯，供弟兄姊妹交流。</p>
-	  <div class="slideshow-wrapper">
+	 <div class="slideshow-wrapper">
   <div class="slideshow" data-name="courtyard">
     <div class="slides">
       <img src="中庭1.jpg" alt="中庭1">
       <img src="中庭2.jpg" alt="中庭2">
       <img src="中庭3.jpg" alt="中庭3">
-	  <img src="中庭4.jpg" alt="中庭4">
-	  <img src="中庭5.jpg" alt="中庭5">
+      <img src="中庭4.jpg" alt="中庭4">
+      <img src="中庭5.jpg" alt="中庭5">
     </div>
     <button class="prev">❮</button>
     <button class="next">❯</button>
     <div class="dots"></div>
+    <div class="caption">中庭</div>
   </div>
-  <div class="caption">中庭</div>
 </div>
 
 <div class="slideshow-wrapper">
@@ -387,20 +344,19 @@
     <div class="slides">
       <img src="禮拜堂1.jpg" alt="禮拜堂1">
       <img src="禮拜堂2.jpg" alt="禮拜堂2">
-	  <img src="禮拜堂3.jpg" alt="禮拜堂3">
-	  <img src="禮拜堂4.jpg" alt="禮拜堂4">
-	  <img src="禮拜堂5.jpg" alt="禮拜堂5">	
-	  <img src="禮拜堂6.jpg" alt="禮拜堂6">
-	  <img src="禮拜堂7.jpg" alt="禮拜堂7">
-	  <img src="禮拜堂8.jpg" alt="禮拜堂8">
-    	</div>
-    	<button class="prev">❮</button>
-    	<button class="next">❯</button>
-    	<div class="dots"></div>
-  		</div>
-  		  <div class="caption">禮拜堂</div>
-		</div>
-	  </div>
+      <img src="禮拜堂3.jpg" alt="禮拜堂3">
+      <img src="禮拜堂4.jpg" alt="禮拜堂4">
+      <img src="禮拜堂5.jpg" alt="禮拜堂5">
+      <img src="禮拜堂6.jpg" alt="禮拜堂6">
+      <img src="禮拜堂7.jpg" alt="禮拜堂7">
+      <img src="禮拜堂8.jpg" alt="禮拜堂8">
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+    <div class="dots"></div>
+    <div class="caption">禮拜堂</div>
+  </div>
+</div>
 	  
       <!-- 在這裡添加更多內容 -->
     </div>
@@ -565,6 +521,7 @@
   </body>
 
 </html>
+
 
 
 
