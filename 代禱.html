@@ -16,31 +16,38 @@
 
       header {
   		position: relative;
-  		max-width: 3000px;
-  		max-height: 105px;      /* 與原本一樣 */
-  		margin: 0;              /* 頂端緊貼畫面 */
+  		width: 100%;           /* 整個螢幕寬度 */
+  		height: 105px;         /* 保留原始高度 */
+  		margin: 0;
   		padding: 0;
-  		color: #333;
+  		display: flex;         /* flex 排列 */
+  		align-items: flex-start; /* 讓 logo 對齊頂部 */
+  		background-color: transparent; 
+ 		color: #333;
 	  }
 
+	  /* Logo 與文字容器 */
 	  .header-title {
   		display: flex;
-  		align-items: center;    /* 讓 logo 與文字垂直對齊 */
-  		margin-left: 110px;     /* 保持原本文字與頁面左邊距 */
-  		margin-top: 0;
+  		align-items: flex-start; /* Logo 與文字頂部對齊 */
+  		margin: 0;               /* 不留空白 */
+  		padding: 0;
 	  }
 
+	  /* Logo */
 	  #logo {
   		max-width: 120px;
   		max-height: 120px;
-  		margin: 0;
+  		margin: 0;       /* 緊貼左上角 */
   		padding: 0;
+  		display: inline-block;
 	  }
 
+	  /* 興雅三一堂文字 */
 	  header h1 {
-  		margin-left: 10px;      /* 文字緊貼 logo 右邊 */
- 		margin-top: 0;
- 		line-height: 105px;     /* 與 header 高度對齊 */
+  		margin: 0 0 0 10px;  /* 左邊緊貼 logo 右邊 */
+  		line-height: 105px;  /* 與 header 高度對齊 */
+  		display: inline-block;
 	  }
       nav {
         background-color: #555;
@@ -444,6 +451,7 @@
 	});
   </script>
 </html>
+
 
 
 
