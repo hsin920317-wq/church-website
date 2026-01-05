@@ -16,37 +16,35 @@
 
       header {
   		position: relative;
-  		width: 100%;           /* 整個螢幕寬度 */
-  		height: 105px;         /* 保留原始高度 */
+  		width: 100%;
+  		height: 115px;          /* 👈 比 105 多一點點 */
+  		padding-top: 5px;       /* 👈 微微往下，視覺比較舒服 */
   		margin: 0;
-  		padding: 0;
-  		display: flex;         /* flex 排列 */
-  		align-items: flex-start; /* 讓 logo 對齊頂部 */
-  		background-color: transparent; 
- 		color: #333;
+  		display: flex;
+  		align-items: flex-start;
+  		color: #333;
 	  }
 
-	  /* Logo 與文字容器 */
 	  .header-title {
   		display: flex;
-  		align-items: flex-start; /* Logo 與文字頂部對齊 */
-  		margin: 0;               /* 不留空白 */
-  		padding: 0;
+  		align-items: flex-start;
+  		margin: 0;
+  		padding-left: 5px;   /* 👈 跟螢幕左邊留一點點距離 */
 	  }
 
-	  /* Logo */
 	  #logo {
   		max-width: 120px;
   		max-height: 120px;
-  		margin: 0;       /* 緊貼左上角 */
+  		margin: 0;           /* ❗ 不再用負 margin */
   		padding: 0;
-  		display: inline-block;
+  		display: block;
 	  }
 
 	  /* 興雅三一堂文字 */
 	  header h1 {
-  		margin: 0 0 0 10px;  /* 左邊緊貼 logo 右邊 */
-  		line-height: 105px;  /* 與 header 高度對齊 */
+  		margin: 0 0 0 12px;   /* 👈 就在 logo 右邊 */
+  		line-height: 115px;  /* 👈 跟 header 高度一致 */
+  		font-size: 32px;     /* 如果你想更接近原本也可調 */
   		display: inline-block;
 	  }
       nav {
@@ -130,6 +128,7 @@
   		text-align: center;
   		border-radius: 8px;
   		z-index: 1000;
+		font-weight: bold;
 	  }
 
 	  .marquee-container button {
@@ -141,7 +140,7 @@
 	  .marquee-text {
   		display: inline-block;
   		white-space: nowrap;
-  		animation: scroll 15s linear infinite;
+  		animation: scroll 18s linear infinite;
   		padding-left: 100%; /* 文字一開始在右邊框外 */
 	  }
 
@@ -451,6 +450,7 @@
 	});
   </script>
 </html>
+
 
 
 
