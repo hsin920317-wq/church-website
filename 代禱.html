@@ -32,14 +32,14 @@
   		align-items: flex-start;
   		margin: 0;
   		padding: 0 0 0 1px;   /* 👈 幾乎貼齊，但不冒險 */
+		padding-left: 110px; /* 給 Logo 空間 */
 	  }
 
 	  #logo {
-  		max-width: 120px;
-  		max-height: 120px;
-  		margin: 0;           /* ❗ 不再用負 margin */
-  		padding: 0;
-  		display: block;
+  		position: absolute;
+  		top: 5px;     /* 👈 就是這裡，等一下你會調它，自己微調高度調這裡 */
+  		left: 5px;
+  		max-height: 100px;
 	  }
 
 	  /* 興雅三一堂文字 */
@@ -143,7 +143,12 @@
   		display: inline-block;
   		white-space: nowrap;
   		animation: scroll 18s linear infinite;
-  		padding-left: 100%; /* 文字一開始在右邊框外 */
+  		padding-left: 100%;
+	  }
+
+	  /* JS / hover 都只是在切這個狀態 */
+	  .marquee-text.paused {
+  		animation-play-state: paused;
 	  }
 
 	  @keyframes scroll {
@@ -249,7 +254,7 @@
   }	
 
   .marquee-text {
-    animation: scroll 15s linear infinite; /* 保持跟電腦版一樣的跑馬燈 */
+    animation: scroll 18s linear infinite; /* 保持跟電腦版一樣的跑馬燈 */
   }
   /* AI 小助手框 */
   #ai-helper {
@@ -267,9 +272,9 @@
   <body>
     <header>
   	  <div class="marquee-container">
-  		<marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
-    		📢 歡迎來到興雅三一堂！每週日早上10點都會有主日崇拜，誠摯邀請您參加～
-  		</marquee>
+  		<div class="marquee-text">
+    		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜～
+  		</div>
   		<button id="toggle-marquee">⏸ 停止公告</button>
 	  </div>
 	  
@@ -439,18 +444,27 @@
 	});
   </script>
   <script>
-  	const btn = document.getElementById("toggle-marquee");
-  	const marquee = document.querySelector(".marquee-text");
-  	btn.addEventListener("click", () => {
-      marquee.classList.toggle("paused");
-	  if (marquee.classList.contains("paused")) {
-      	btn.textContent = "▶️ 播放公告";
-      } else {
-      btn.textContent = "⏸ 停止公告";
-      }
-    });
-  </script>
+  const marquee = document.getElementById("marquee-text");
+  const btn = document.getElementById("toggle-marquee");
+  const marqueeArea = document.getElementById("marquee-area");
+  let isPaused = false;
+  // 🔘 按鈕控制（桌機 & 手機共用）
+  btn.addEventListener("click", () => {
+    isPaused = !isPaused;
+    marquee.classList.toggle("paused", isPaused);
+    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 停止公告";
+  });
+  // 🖥 桌機 hover 停止（只有滑鼠裝置才會有）
+  marqueeArea.addEventListener("mouseenter", () => {
+    if (!isPaused) marquee.classList.add("paused");
+  });
+  marqueeArea.addEventListener("mouseleave", () => {
+    if (!isPaused) marquee.classList.remove("paused");
+  });
+</script>
+
 </html>
+
 
 
 
