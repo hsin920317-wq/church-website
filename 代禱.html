@@ -18,6 +18,7 @@
   		display: flex;
   		align-items: center;
   		padding: 10px 20px;
+		position: relative; /* ⭐ 給跑馬燈一個參考點 */
 	  }
 
 	  header h1 {
@@ -26,9 +27,16 @@
   		line-height: normal;
 	  }
 
-      #logo {
-        margin: 0;
-      }
+      .header-title {
+  		display: flex;
+  		align-items: center;
+	  }
+
+	  #logo {
+  		width: 50px;        /* ⭐ 控制大小，很重要 */
+  		height: auto;
+  		margin-right: 10px;
+	  }
 
       nav {
         background-color: #555;
@@ -119,8 +127,13 @@
 
 	  .marquee-text {
   		white-space: nowrap;
-  		animation: scroll 15s linear infinite;
+  		animation: scroll 25s linear infinite;
+		display: inline-block;
   	  }
+
+	  .marquee-text.paused {
+  		animation-play-state: paused;
+	  }
 
 	  @keyframes scroll {
   		from { transform: translateX(100%); }
@@ -142,6 +155,19 @@
   		.marquee-text {
     	  animation: none;
   		}
+	  }
+
+	  #toggle-marquee {
+  		position: absolute;
+  		right: 8px;
+  		top: 50%;
+  		transform: translateY(-50%);
+  		font-size: 12px;
+  		padding: 2px 6px;
+  		border: none;
+  		border-radius: 6px;
+  		background: rgba(0,0,0,0.1);
+  		cursor: pointer;
 	  }
 @media (max-width: 768px) {
   nav {
@@ -221,15 +247,19 @@
   </head>
   <body>
     <header>
-	  <div class="marquee-container">
-  		<div class="marquee-text">
-    		📢 歡迎來到興雅三一堂！每週日早上10點主日崇拜，誠摯邀請您～
-  		</div>
-	  </div>
-      <h1><a href="教會網站.html">興雅三一堂</a></h1>
-      <img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
-    </header>
+  	  <div class="marquee-container">
+    	<div class="marquee-text">
+      	  📢 歡迎來到興雅三一堂！每週日早上10點主日崇拜，誠摯邀請您～
+    	</div>
+		<button id="toggle-marquee">⏸ 停止公告</button>
+  	  </div>
+	  
 
+  	  <div class="header-title">
+    	<img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
+    	<h1><a href="教會網站.html">興雅三一堂</a></h1>
+  	  </div>
+	</header>
     <nav>
   <div class="hamburger">☰</div>
   <ul>
@@ -389,8 +419,18 @@
   	  });
 	});
   </script>
-	  
+  <script>
+  	const btn = document.getElementById("toggle-marquee");
+  	const marquee = document.querySelector(".marquee-text");
+	btn.addEventListener("click", () => {
+    marquee.classList.toggle("paused");
+    btn.textContent = marquee.classList.contains("paused")
+      ? "▶️ 播放公告"
+      : "⏸ 停止公告";
+    });
+  </script>
 </html>
+
 
 
 
