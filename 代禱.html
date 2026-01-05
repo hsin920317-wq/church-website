@@ -15,14 +15,11 @@
       }
 
       header {
-  		position: relative; /* 讓跑馬燈絕對定位相對於 header */
   		color: #333;
   		max-width: 3000px;
   		max-height: 105px;
-  		margin-top: 1px;
   		margin-bottom: 10px;
-  		display: flex;
-  		align-items: center;
+  		margin-top: 1px;
 	  }
 
 	  header h1 {
@@ -40,11 +37,10 @@
 	  #logo {
   		max-width: 120px;
   		max-height: 120px;
-  		margin-left: 0;
-  		margin-top: -125px;
   		margin-bottom: 12px;
+  		margin-top: -125px;
+  		margin-left: 0px;
 	  }
-
       nav {
         background-color: #555;
         text-align: center;
@@ -260,10 +256,10 @@
   <body>
     <header>
   	  <div class="marquee-container">
-    	<div class="marquee-text">
-      	  📢 歡迎來到興雅三一堂！每週日早上10點主日崇拜，誠摯邀請您～
-    	</div>
-		<button id="toggle-marquee">⏸ 停止公告</button>
+  		<marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+    		📢 歡迎來到興雅三一堂！每週日早上10點都會有主日崇拜，誠摯邀請您參加～
+  		</marquee>
+  	  	<button id="toggle-marquee">⏸ 停止公告</button>
 	  </div>
 	  
 
@@ -433,18 +429,19 @@
   </script>
   <script>
 	const btn = document.getElementById("toggle-marquee");
-	const marquee = document.querySelector(".marquee-text");
-	btn.addEventListener("click", () => {
-    if (marquee.style.animationPlayState === "paused" || !marquee.style.animationPlayState) {
-        marquee.style.animationPlayState = "running"; // 播放
-        btn.textContent = "⏸ 停止公告";
-    } else {
-        marquee.style.animationPlayState = "paused"; // 暫停
-        btn.textContent = "▶️ 播放公告";
-      }
-    });
+	const marquee = document.querySelector("marquee");
+    btn.addEventListener("click", () => {
+  	if (marquee.getAttribute("scrollamount") !== "0") {
+    	marquee.setAttribute("scrollamount", "0"); // 暫停
+    	btn.textContent = "▶️ 播放公告";
+  	} else {
+    	marquee.setAttribute("scrollamount", "5"); // 恢復
+    	btn.textContent = "⏸ 停止公告";
+  	  }
+	});
   </script>
 </html>
+
 
 
 
