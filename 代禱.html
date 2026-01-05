@@ -15,17 +15,21 @@
       }
 
       header {
-    	display: flex;
-    	align-items: flex-start;  /* 靠上 */
-    	padding: 10px 20px;
-    	position: relative;       /* 跑馬燈絕對定位 */
+  		position: relative; /* 讓跑馬燈絕對定位相對於 header */
+  		color: #333;
+  		max-width: 3000px;
+  		max-height: 105px;
+  		margin-top: 1px;
+  		margin-bottom: 10px;
+  		display: flex;
+  		align-items: center;
 	  }
 
 	  header h1 {
-    	margin-left: 110px;
-    	margin-right: 10px;
-    	margin-top: -5px;
-    	line-height: 90px;
+  		margin-left: 110px;
+  		margin-right: 10px;
+  		margin-top: -5px;
+  		line-height: 90px;
 	  }
 		
       .header-title {
@@ -34,11 +38,11 @@
 	  }
 
 	  #logo {
-    	max-width: 120px;
-    	max-height: 120px;
-    	margin-bottom: 12px;
-    	margin-top: -125px;
-    	margin-left: 0px;
+  		max-width: 120px;
+  		max-height: 120px;
+  		margin-left: 0;
+  		margin-top: -125px;
+  		margin-bottom: 12px;
 	  }
 
       nav {
@@ -113,23 +117,31 @@
 
 	  .marquee-container {
   		position: absolute;
-  		top: 0;
-  		left: 0;
-  		width: 100%;
-  		overflow: hidden;   /* ⭐ 確保多出來的字不會跑出來 */
-  		background-color: rgba(255,255,255,0.6);
+  		top: 10px; /* 跑馬燈離 header 上方的距離 */
+  		left: 50%;
+  		transform: translateX(-50%);
+  		width: 66%;             /* 跟原來一樣寬度 */
+  		background-color: rgba(255, 255, 255, 0.6);
+  		color: #333;
+  		font-size: 16px;
+  		font-weight: bold;
+  		padding: 5px;
+  		text-align: center;
+  		border-radius: 8px;
+  		overflow: hidden;       /* ⭐ 確保文字不跑出框 */
+  		z-index: 1000;
 	  }
 
 	  .marquee-text {
   		display: inline-block;
   		white-space: nowrap;
-  		padding-left: 100%;          /* ⭐ 讓文字一開始在最右邊外面 */
   		animation: scroll 15s linear infinite;
+  		padding-left: 100%; /* 文字一開始在右邊框外 */
 	  }
 
 	  @keyframes scroll {
-  		0% { transform: translateX(0); }
-  		100% { transform: translateX(-100%); } /* ⭐ 這裡 -100% = 自己整個寬度 */
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); } /* 文字完全跑完才回到右邊 */
 	  }
 	  
 	  .marquee-container:hover .marquee-text {
@@ -433,6 +445,7 @@
     });
   </script>
 </html>
+
 
 
 
