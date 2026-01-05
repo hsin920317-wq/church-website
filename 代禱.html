@@ -17,16 +17,19 @@
       header {
   		color: #333;
   		max-width: 3000px;
-  		max-height: 105px;
+  		max-height: 105px;  /* header 高度固定 */
   		margin-bottom: 10px;
-  		margin-top: 1px;
+  		margin-top: 1px;    /* 緊貼上方 */
+  		position: relative;  /* 讓跑馬燈用絕對定位不會破壞布局 */
 	  }
 
 	  header h1 {
   		margin-left: 110px;
   		margin-right: 10px;
   		margin-top: -5px;
-  		line-height: 90px;
+  		line-height: 90px;  /* 與 header 高度對齊 */
+  		position: relative; /* 避免跑馬燈影響 */
+  		display: inline-block;
 	  }
 		
       .header-title {
@@ -38,8 +41,10 @@
   		max-width: 120px;
   		max-height: 120px;
   		margin-bottom: 12px;
-  		margin-top: -125px;
+  		margin-top: -125px;  /* 與原本位置對齊 */
   		margin-left: 0px;
+  		display: inline-block;
+  		vertical-align: top;
 	  }
       nav {
         background-color: #555;
@@ -113,19 +118,20 @@
 
 	  .marquee-container {
   		position: absolute;
-  		top: 10px; /* 跑馬燈離 header 上方的距離 */
+  		top: 15px;  /* 跑馬燈稍微往下，跟 Logo 對齊 */
   		left: 50%;
   		transform: translateX(-50%);
-  		width: 66%;             /* 跟原來一樣寬度 */
-  		background-color: rgba(255, 255, 255, 0.6);
-  		color: #333;
-  		font-size: 16px;
-  		font-weight: bold;
+  		width: 66%;             /* 保留原本寬度 */
+  		background-color: rgba(255,255,255,0.6);
   		padding: 5px;
   		text-align: center;
   		border-radius: 8px;
-  		overflow: hidden;       /* ⭐ 確保文字不跑出框 */
   		z-index: 1000;
+	  }
+	  .marquee-container button {
+  		margin-left: 10px;
+  		font-size: 14px;
+  		vertical-align: middle;
 	  }
 
 	  .marquee-text {
@@ -259,7 +265,7 @@
   		<marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
     		📢 歡迎來到興雅三一堂！每週日早上10點都會有主日崇拜，誠摯邀請您參加～
   		</marquee>
-  	  	<button id="toggle-marquee">⏸ 停止公告</button>
+  		<button id="toggle-marquee">⏸ 停止公告</button>
 	  </div>
 	  
 
@@ -441,6 +447,7 @@
 	});
   </script>
 </html>
+
 
 
 
