@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>興雅三一堂</title>
     <style>
-      body {
+      html, body {
         background-image: url("雲圖片.jpg");
         background-size: cover;
         background-attachment: fixed;
         color: #333;
         margin: 0;
+		padding: 0;
         font-family: sans-serif;
       }
 
@@ -20,6 +21,7 @@
   		height: 115px;          /* 👈 比 105 多一點點 */
   		padding-top: 5px;       /* 👈 微微往下，視覺比較舒服 */
   		margin: 0;
+		padding: 0;
   		display: flex;
   		align-items: flex-start;
   		color: #333;
@@ -29,7 +31,7 @@
   		display: flex;
   		align-items: flex-start;
   		margin: 0;
-  		padding-left: 5px;   /* 👈 跟螢幕左邊留一點點距離 */
+  		padding: 0 0 0 1px;   /* 👈 幾乎貼齊，但不冒險 */
 	  }
 
 	  #logo {
@@ -42,7 +44,7 @@
 
 	  /* 興雅三一堂文字 */
 	  header h1 {
-  		margin: 0 0 0 12px;   /* 👈 就在 logo 右邊 */
+  		margin: 0 0 0 6px;    /* 👈 原本 12px → 改 6px 👈 就在 logo 右邊 */
   		line-height: 115px;  /* 👈 跟 header 高度一致 */
   		font-size: 32px;     /* 如果你想更接近原本也可調 */
   		display: inline-block;
@@ -450,6 +452,7 @@
 	});
   </script>
 </html>
+
 
 
 
