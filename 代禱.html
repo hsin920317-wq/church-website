@@ -18,10 +18,9 @@
       header {
   		position: relative;
   		width: 100%;
-  		height: 115px;          /* 👈 比 105 多一點點 */
-  		padding-top: 5px;       /* 👈 微微往下，視覺比較舒服 */
+  		height: 115px; /* 👈 比 105 多一點點 */
   		margin: 0;
-		padding: 0;
+  		padding: 0;
   		display: flex;
   		align-items: flex-start;
   		color: #333;
@@ -37,9 +36,9 @@
 
 	  #logo {
   		position: absolute;
-  		top: 5px;     /* 👈 就是這裡，等一下你會調它，自己微調高度調這裡 */
-  		left: 5px;
-  		max-height: 100px;
+  		top: 0; /* ⭐ 真正貼上邊界 */
+  		left: 0; /* ⭐ 真正貼左邊界 */
+  		max-height: 120px; /* 👈 回到你原本大小 */
 	  }
 
 	  /* 興雅三一堂文字 */
@@ -121,16 +120,16 @@
 
 	  .marquee-container {
   		position: absolute;
-  		top: 0; /* 緊貼 header 上方 */
+  		top: 0;
   		left: 50%;
   		transform: translateX(-50%);
-  		width: 66%; /* 保留原本跑馬燈寬度 */
+  		width: 66%;
   		background-color: rgba(255,255,255,0.6);
   		padding: 5px;
-  		text-align: center;
   		border-radius: 8px;
   		z-index: 1000;
-		font-weight: bold;
+  		overflow: hidden;        /* ⭐⭐⭐ 就是這行 */
+  		box-sizing: border-box;
 	  }
 
 	  .marquee-container button {
@@ -154,10 +153,6 @@
 	  @keyframes scroll {
         0% { transform: translateX(0); }
         100% { transform: translateX(-100%); } /* 文字完全跑完才回到右邊 */
-	  }
-	  
-	  .marquee-container:hover .marquee-text {
-  		animation-play-state: paused;
 	  }
 
       /* 桌機版隱藏漢堡按鈕 */
@@ -271,8 +266,8 @@
   </head>
   <body>
     <header>
-  	  <div class="marquee-container">
-  		<div class="marquee-text">
+  	  <div class="marquee-container" id="marquee-area">
+  		<div class="marquee-text" id="marquee-text">
     		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜～
   		</div>
   		<button id="toggle-marquee">⏸ 停止公告</button>
@@ -464,6 +459,7 @@
 </script>
 
 </html>
+
 
 
 
