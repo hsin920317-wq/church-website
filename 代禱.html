@@ -15,30 +15,33 @@
       }
 
       header {
-  		display: flex;
-  		align-items: center;   /* 垂直置中 */
-  		padding: 10px 20px;
-		position: relative; /* ⭐ 給跑馬燈一個參考點 */
-  		gap: 10px; /* logo 和文字間距 */
+    	color: #333;
+    	max-width: 3000px;
+    	max-height: 105px;
+    	margin-bottom: 10px;
+    	margin-top: 1px;
+    	position: relative; /* ⭐ 確保 Logo 絕對定位參考 */
 	  }
 
 	  header h1 {
-  		margin: 0;
-  		font-size: 28px;    /* 可視需要調整大小 */
-  		line-height: 1.2;   /* 文字垂直居中 */
-  		color: #333;        /* 保持原本顏色 */
+    	margin-left: 110px;
+    	margin-right: 10px;
+    	margin-top: -5px;
+    	line-height: 90px;
 	  }
-
+		
       .header-title {
   		display: flex;
   		align-items: center;
 	  }
 
 	  #logo {
-  		max-width: 120px;   /* 原本設定值，適合桌機版 */
-  		max-height: 120px;
-  		width: auto;
-  		height: auto;
+    	max-width: 120px;
+    	max-height: 120px;
+    	margin-bottom: 12px;
+    	margin-top: -125px;
+    	margin-left: 0px;
+    	position: absolute; /* ⭐ 讓 Logo 可以「浮」在 header */
 	  }
 
       nav {
@@ -233,7 +236,15 @@
   	padding: 10px;
   	box-sizing: border-box;
   }
+  #logo {
+    max-width: 80px;
+    max-height: 80px;
+    margin-top: -80px;
+  }	
 
+  .marquee-text {
+    animation: scroll 15s linear infinite; /* 保持跟電腦版一樣的跑馬燈 */
+  }
   /* AI 小助手框 */
   #ai-helper {
   	margin: 20px auto;
@@ -254,7 +265,7 @@
       	  📢 歡迎來到興雅三一堂！每週日早上10點主日崇拜，誠摯邀請您～
     	</div>
 		<button id="toggle-marquee">⏸ 停止公告</button>
-  	  </div>
+	  </div>
 	  
 
   	  <div class="header-title">
@@ -422,16 +433,20 @@
 	});
   </script>
   <script>
-  	const btn = document.getElementById("toggle-marquee");
-  	const marquee = document.querySelector(".marquee-text");
+	const btn = document.getElementById("toggle-marquee");
+	const marquee = document.querySelector(".marquee-text");
 	btn.addEventListener("click", () => {
-    marquee.classList.toggle("paused");
-    btn.textContent = marquee.classList.contains("paused")
-      ? "▶️ 播放公告"
-      : "⏸ 停止公告";
+    if (marquee.style.animationPlayState === "paused" || !marquee.style.animationPlayState) {
+        marquee.style.animationPlayState = "running"; // 播放
+        btn.textContent = "⏸ 停止公告";
+    } else {
+        marquee.style.animationPlayState = "paused"; // 暫停
+        btn.textContent = "▶️ 播放公告";
+      }
     });
   </script>
 </html>
+
 
 
 
