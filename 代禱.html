@@ -15,36 +15,32 @@
       }
 
       header {
-  		color: #333;
+  		position: relative;
   		max-width: 3000px;
-  		max-height: 105px;  /* header 高度固定 */
-  		margin-bottom: 10px;
-  		margin-top: 1px;    /* 緊貼上方 */
-  		position: relative;  /* 讓跑馬燈用絕對定位不會破壞布局 */
+  		max-height: 105px;      /* 與原本一樣 */
+  		margin: 0;              /* 頂端緊貼畫面 */
+  		padding: 0;
+  		color: #333;
 	  }
 
-	  header h1 {
-  		margin-left: 110px;
-  		margin-right: 10px;
-  		margin-top: -5px;
-  		line-height: 90px;  /* 與 header 高度對齊 */
-  		position: relative; /* 避免跑馬燈影響 */
-  		display: inline-block;
-	  }
-		
-      .header-title {
+	  .header-title {
   		display: flex;
-  		align-items: center;
+  		align-items: center;    /* 讓 logo 與文字垂直對齊 */
+  		margin-left: 110px;     /* 保持原本文字與頁面左邊距 */
+  		margin-top: 0;
 	  }
 
 	  #logo {
   		max-width: 120px;
   		max-height: 120px;
-  		margin-bottom: 12px;
-  		margin-top: -125px;  /* 與原本位置對齊 */
-  		margin-left: 0px;
-  		display: inline-block;
-  		vertical-align: top;
+  		margin: 0;
+  		padding: 0;
+	  }
+
+	  header h1 {
+  		margin-left: 10px;      /* 文字緊貼 logo 右邊 */
+ 		margin-top: 0;
+ 		line-height: 105px;     /* 與 header 高度對齊 */
 	  }
       nav {
         background-color: #555;
@@ -118,16 +114,17 @@
 
 	  .marquee-container {
   		position: absolute;
-  		top: 15px;  /* 跑馬燈稍微往下，跟 Logo 對齊 */
+  		top: 0; /* 緊貼 header 上方 */
   		left: 50%;
   		transform: translateX(-50%);
-  		width: 66%;             /* 保留原本寬度 */
+  		width: 66%; /* 保留原本跑馬燈寬度 */
   		background-color: rgba(255,255,255,0.6);
   		padding: 5px;
   		text-align: center;
   		border-radius: 8px;
   		z-index: 1000;
 	  }
+
 	  .marquee-container button {
   		margin-left: 10px;
   		font-size: 14px;
@@ -447,6 +444,7 @@
 	});
   </script>
 </html>
+
 
 
 
