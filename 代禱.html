@@ -439,19 +439,19 @@
 	});
   </script>
   <script>
-	const btn = document.getElementById("toggle-marquee");
-	const marquee = document.querySelector(".marquee-text");
-	btn.addEventListener("click", () => {
-    if (marquee.style.animationPlayState === "paused" || !marquee.style.animationPlayState) {
-        marquee.style.animationPlayState = "running"; // 播放
-        btn.textContent = "⏸ 停止公告";
-    } else {
-        marquee.style.animationPlayState = "paused"; // 暫停
-        btn.textContent = "▶️ 播放公告";
+  	const btn = document.getElementById("toggle-marquee");
+  	const marquee = document.querySelector(".marquee-text");
+  	btn.addEventListener("click", () => {
+      marquee.classList.toggle("paused");
+	  if (marquee.classList.contains("paused")) {
+      	btn.textContent = "▶️ 播放公告";
+      } else {
+      btn.textContent = "⏸ 停止公告";
       }
     });
   </script>
 </html>
+
 
 
 
