@@ -244,11 +244,13 @@
   	box-sizing: border-box;
   }
   #logo {
-    max-width: 80px;
-    max-height: 80px;
-    margin-top: -80px;
-  }	
-
+    position: absolute;
+    top: 0;      /* 貼齊上邊界 */
+    left: 0;     /* 貼齊左邊界 */
+    max-width: 120px;  /* 跟桌機版一樣 */
+    max-height: 120px;
+    margin: 0;   /* 不再用負 margin */
+  }
   .marquee-text {
     animation: scroll 18s linear infinite; /* 保持跟電腦版一樣的跑馬燈 */
   }
@@ -460,6 +462,7 @@
 </script>
 
 </html>
+
 
 
 
