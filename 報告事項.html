@@ -5,38 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>興雅三一堂</title>
     <style>
-      body {
+      html, body {
         background-image: url("雲圖片.jpg");
         background-size: cover;
         background-attachment: fixed;
         color: #333;
         margin: 0;
+		padding: 0;
         font-family: sans-serif;
       }
 
       header {
-        color: #333;
-        max-width: 3000px;
-        max-height: 105px;
-        margin-bottom: 10px;
-        margin-top: 1px;
-      }
+  		position: relative;
+  		width: 100%;
+  		height: 115px; /* 👈 比 105 多一點點 */
+  		margin: 0;
+  		padding: 0;
+  		display: flex;
+  		align-items: flex-start;
+  		color: #333;
+	  }
 
-      header h1 {
-        margin-left: 110px;
-        margin-right: 10px;
-        margin-top: -5px;
-        line-height: 90px;
-      }
+	  .header-title {
+  		display: flex;
+  		align-items: flex-start;
+  		margin: 0;
+  		padding: 0 0 0 1px;   /* 👈 幾乎貼齊，但不冒險 */
+		padding-left: 110px; /* 給 Logo 空間 */
+	  }
 
-      #logo {
-        max-width: 120px;
-        max-height: 120px;
-        margin-bottom: 12px;
-        margin-top: -125px;
-        margin-left: 0px;
-      }
+	  #logo {
+  		position: absolute;
+  		top: 0; /* ⭐ 真正貼上邊界 */
+  		left: 0; /* ⭐ 真正貼左邊界 */
+  		max-height: 120px; /* 👈 回到你原本大小 */
+	  }
 
+	  /* 興雅三一堂文字 */
+	  header h1 {
+  		margin: 0 0 0 6px;    /* 👈 原本 12px → 改 6px 👈 就在 logo 右邊 */
+  		line-height: 115px;  /* 👈 跟 header 高度一致 */
+  		font-size: 32px;     /* 如果你想更接近原本也可調 */
+  		display: inline-block;
+	  }
       nav {
         background-color: #555;
         text-align: center;
@@ -104,31 +115,72 @@
         background-color: rgba(255, 255, 255, 0.8);
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: 1400px;
+        min-height: 60vh;
       }
 
 	  .marquee-container {
-  		position: absolute; 
-   		top: 0;
-    	left: 50%;                  /* 先把左邊界移到視窗中間 */
-    	transform: translateX(-50%); /* 再把元素本身往左移一半寬度，達到真正置中 */
-    	width: 66%;                  /* 中間三分之二 */
-    	background-color: rgba(255, 255, 255, 0.6);
-    	color: #333;
-    	font-size: 16px;
-    	font-weight: bold;
-    	padding: 5px;
-    	text-align: center;
-    	border-radius: 8px;
-    	z-index: 1000;               /* 確保跑馬燈在最上層 */
+  		position: absolute;
+  		top: 0;
+  		left: 50%;
+  		transform: translateX(-50%);
+  		width: 66%;
+  		background-color: rgba(255,255,255,0.6);
+  		padding: 5px;
+  		border-radius: 8px;
+  		z-index: 1000;
+  		overflow: hidden;        /* ⭐⭐⭐ 就是這行 */
+  		box-sizing: border-box;
 	  }
-		
+
+	  .marquee-container button {
+  		margin-left: 10px;
+  		font-size: 14px;
+  		vertical-align: middle;
+	  }
+
+	  .marquee-text {
+  		display: inline-block;
+  		white-space: nowrap;
+  		animation: scroll 25s linear infinite;
+  		padding-left: 100%;
+		font-weight: bold;  /* ⭐ 這行就是讓文字粗體 */
+	  }
+
+	  /* JS / hover 都只是在切這個狀態 */
+	  .marquee-text.paused {
+  		animation-play-state: paused;
+	  }
+
+	  @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); } /* 文字完全跑完才回到右邊 */
+	  }
+
       /* 桌機版隱藏漢堡按鈕 */
   	  .hamburger {
   		display: none;
   	  }
 		
       /* 手機版樣式 */
+	  /*使用者在『系統設定』裡面說：我不想看動畫，生效*/
+	  @media (prefers-reduced-motion: reduce) {
+  		.marquee-text {
+    	  animation: none;
+  		}
+	  }
+
+	  #toggle-marquee {
+  		position: absolute;
+  		right: 8px;
+  		top: 50%;
+  		transform: translateY(-50%);
+  		font-size: 12px;
+  		padding: 2px 6px;
+  		border: none;
+  		border-radius: 6px;
+  		background: rgba(0,0,0,0.1);
+  		cursor: pointer;
+	  }
 @media (max-width: 768px) {
   nav {
     margin: 0 7px;       /* 左右縮 7px */
@@ -164,8 +216,10 @@
 
   /* 子選單縮排 */
   nav li ul {
-    position: static;
-    background: #666;
+    display: none;
+  }
+  nav li ul.open {
+    display: block;
   }
 
   nav li ul li a {
@@ -189,7 +243,17 @@
   	padding: 10px;
   	box-sizing: border-box;
   }
-
+  #logo {
+    position: absolute;
+    top: 0;      /* 貼齊上邊界 */
+    left: 0;     /* 貼齊左邊界 */
+    max-width: 120px;  /* 跟桌機版一樣 */
+    max-height: 120px;
+    margin: 0;   /* 不再用負 margin */
+  }
+  .marquee-text {
+    animation: scroll 18s linear infinite; /* 保持跟電腦版一樣的跑馬燈 */
+  }
   /* AI 小助手框 */
   #ai-helper {
   	margin: 20px auto;
@@ -205,15 +269,19 @@
   </head>
   <body>
     <header>
-	  <div class="marquee-container">
-    	<marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
-      	    📢 歡迎來到興雅三一堂！每週日早上10點都會有主日崇拜，誠摯邀請您參加～
-    	</marquee>
+  	  <div class="marquee-container" id="marquee-area">
+  		<div class="marquee-text" id="marquee-text">
+    		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜，誠摯邀請您參加～
+  		</div>
+  		<button id="toggle-marquee">⏸ 停止公告</button>
 	  </div>
-      <h1><a href="教會網站.html">興雅三一堂</a></h1>
-      <img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
-    </header>
+	  
 
+  	  <div class="header-title">
+    	<img id="logo" src="興雅三一堂logo-removebg-preview.png" alt="Logo" />
+    	<h1><a href="教會網站.html">興雅三一堂</a></h1>
+  	  </div>
+	</header>
     <nav>
   <div class="hamburger">☰</div>
   <ul>
@@ -321,15 +389,6 @@
         select.options[0].style.display = 'none';
       }
     </script>
-    <script>
-      $(document).ready(function(){
-        var navLinks = $('nav a');
-        navLinks.mouseenter(function(){
-          navLinks.find('select').hide();
-          $(this).find('select').show();
-        });
-      });
-    </script>
 	<script>
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector("nav ul");
@@ -348,22 +407,39 @@
         navMenu.classList.remove("show");
       }
     });
+
+	document.querySelectorAll("nav > ul > li > a").forEach(link => {
+      link.addEventListener("click", function(e) {
+        const submenu = this.nextElementSibling;
+        if (submenu && window.innerWidth <= 768) {
+          e.preventDefault();
+          submenu.classList.toggle("open");
+        }
+  	  });
+	});
   </script>
   <script>
-	  const hamburger = document.querySelector(".hamburger");
-	  const navInner = document.querySelector(".nav-inner");
-
-	  hamburger.addEventListener("click", () => {
-  	  if (navInner.style.display === "block") {
-    	navInner.style.display = "none";
-  	  } else {
-    	navInner.style.display = "block";
-  	  }
-	});
-  </script>	  
-  </body>
+  const marquee = document.getElementById("marquee-text");
+  const btn = document.getElementById("toggle-marquee");
+  const marqueeArea = document.getElementById("marquee-area");
+  let isPaused = false;
+  // 🔘 按鈕控制（桌機 & 手機共用）
+  btn.addEventListener("click", () => {
+    isPaused = !isPaused;
+    marquee.classList.toggle("paused", isPaused);
+    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 停止公告";
+  });
+  // 🖥 桌機 hover 停止（只有滑鼠裝置才會有）
+  marqueeArea.addEventListener("mouseenter", () => {
+    if (!isPaused) marquee.classList.add("paused");
+  });
+  marqueeArea.addEventListener("mouseleave", () => {
+    if (!isPaused) marquee.classList.remove("paused");
+  });
+</script>
 
 </html>
+
 
 
 
