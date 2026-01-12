@@ -181,6 +181,73 @@
   		background: rgba(0,0,0,0.1);
   		cursor: pointer;
 	  }
+
+	  .slideshow-wrapper {
+  		max-width: 900px;
+  		margin: 50px auto;
+	  }
+
+	  .slideshow {
+  		position: relative;
+  		overflow: hidden;
+  		border-radius: 8px;
+	  }
+
+	  .slides {
+  		display: flex;
+  		transition: transform 0.5s ease;
+ 	  }
+
+	  .slides img {
+  		width: 100%;
+  		flex-shrink: 0;
+  		display: block;
+	  }
+
+	  /* 左右按鈕 */
+	  .slideshow .prev,
+	  .slideshow .next {
+  		position: absolute;
+  		top: 50%;
+  		transform: translateY(-50%);
+  		background: rgba(0,0,0,0.5);
+  		color: white;
+  		border: none;
+  		font-size: 24px;
+  		padding: 6px 10px;
+  		cursor: pointer;
+  		z-index: 5;
+	  }
+
+	  .slideshow .prev { left: 10px; }
+	  .slideshow .next { right: 10px; }
+
+	  /* 圓點 */
+	  .dots {
+  		text-align: center;
+  		margin-top: 10px;
+	  }
+
+	  .dots span {
+  		display: inline-block;
+  		width: 10px;
+  		height: 10px;
+  		margin: 0 4px;
+  		background: #ccc;
+  		border-radius: 50%;
+  		cursor: pointer;
+	  }
+
+	  .dots span.active {
+  		background: #555;
+	  }
+
+	  /* 圖片下方標題 */
+	  .caption {
+  		text-align: center;
+  		margin-top: 6px;
+  		font-weight: bold;
+	  }
 @media (max-width: 768px) {
   nav {
     margin: 0 7px;       /* 左右縮 7px */
@@ -473,8 +540,41 @@
     if (!isPaused) marquee.classList.remove("paused");
   });
 </script>
+<script>
+document.querySelectorAll(".slideshow").forEach(slideshow => {
+  const slides = slideshow.querySelector(".slides");
+  const images = slides.querySelectorAll("img");
+  const prevBtn = slideshow.querySelector(".prev");
+  const nextBtn = slideshow.querySelector(".next");
+  const dotsContainer = slideshow.querySelector(".dots");
 
+  let index = 0;
+
+  // 建立圓點
+  images.forEach((_, i) => {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll("span");
+  /* ⭐⭐ 就加在這裡 ⭐⭐ */
+  slides.style.transform = "translateX(0)";
+
+  function showSlide(i) {
+    index = (i + images.length) % images.length;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  prevBtn.addEventListener("click", () => showSlide(index - 1));
+  nextBtn.addEventListener("click", () => showSlide(index + 1));
+});
+</script>
 </html>
+
 
 
 
