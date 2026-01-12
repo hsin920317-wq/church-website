@@ -190,7 +190,7 @@
 	  }
 
 	  .slideshow {
-  		position: relative;  /* caption 絕對定位參考 */
+  		position: relative;  /* 這一定要有，作為caption/dots的絕對定位參考 */
   		overflow: hidden;
   		border-radius: 10px;
       }
@@ -227,24 +227,34 @@
 
 	  /* 點點導航 */
 	  .slideshow .dots {
+  		position: absolute;    /* ⭐ 改成絕對定位 */
+  		bottom: 10px;          /* ⭐ 距離圖片底部 10px */
+  		left: 50%;             /* ⭐ 水平置中 */
+  		transform: translateX(-50%);
   		text-align: center;
-  		margin-top: 8px;
+  		z-index: 2;            /* ⭐ 確保在圖片上 */
 	  }
+	  /* 原本灰色圓點 */
 	  .slideshow .dot {
- 	 	display: inline-block;
+  		display: inline-block;
   		width: 10px;
   		height: 10px;
   		margin: 0 4px;
-  		background: #bbb;
+  		background: #bbb; /* 這裡改成你想要的顏色 */
   		border-radius: 50%;
   		cursor: pointer;
 	  }
-	  .slideshow .dot.active { background: #333; }
+
+	  /* 當前活動的圓點 */
+	  .slideshow .dot.active {
+  		background: #28a745; /* ⭐ 綠色，或改成你喜歡的綠 */
+		box-shadow: 0 0 2px rgba(0,0,0,0.5);
+	  }
 
 	  /* caption 置中在圖片下方 */
 	  .slideshow .caption {
-  		position: absolute;
-  		bottom: 10px;
+  		position: absolute;    
+  		bottom: 35px;          /* ⭐ 比圓點稍微上方一點 */
   		left: 50%;
   		transform: translateX(-50%);
   		color: white;
@@ -588,4 +598,5 @@ document.querySelectorAll(".slideshow").forEach(slideshow => {
 });
 </script>
 </html>
+
 
