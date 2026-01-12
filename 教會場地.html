@@ -182,71 +182,79 @@
   		cursor: pointer;
 	  }
 
-	  .slideshow-wrapper {
-  		max-width: 900px;
-  		margin: 50px auto;
+	  /* 輪播外框 */
+      .slideshow-wrapper {
+  		text-align: center;
+  		margin: 20px auto;
+  		max-width: 600px;   /* 電腦版寬度 */
 	  }
 
 	  .slideshow {
-  		position: relative;
+  		position: relative;  /* caption 絕對定位參考 */
   		overflow: hidden;
-  		border-radius: 8px;
-	  }
+  		border-radius: 10px;
+      }
 
 	  .slides {
   		display: flex;
-  		transition: transform 0.5s ease;
- 	  }
+  		transition: transform 0.5s ease-in-out;
+	  }
 
 	  .slides img {
-  		width: 100%;
+  		width: 100%;           /* 確保不超過白框 */
   		flex-shrink: 0;
-  		display: block;
+  		border-radius: 10px;
+  		box-sizing: border-box;
 	  }
 
 	  /* 左右按鈕 */
 	  .slideshow .prev,
-	  .slideshow .next {
-  		position: absolute;
+		.slideshow .next {
+	    position: absolute;
   		top: 50%;
   		transform: translateY(-50%);
-  		background: rgba(0,0,0,0.5);
+  		background-color: rgba(0,0,0,0.5);
   		color: white;
   		border: none;
   		font-size: 24px;
-  		padding: 6px 10px;
+  		padding: 10px;
   		cursor: pointer;
-  		z-index: 5;
+  		border-radius: 50%;
+  		z-index: 2;
 	  }
-
 	  .slideshow .prev { left: 10px; }
 	  .slideshow .next { right: 10px; }
 
-	  /* 圓點 */
-	  .dots {
+	  /* 點點導航 */
+	  .slideshow .dots {
   		text-align: center;
-  		margin-top: 10px;
+  		margin-top: 8px;
 	  }
-
-	  .dots span {
-  		display: inline-block;
+	  .slideshow .dot {
+ 	 	display: inline-block;
   		width: 10px;
   		height: 10px;
   		margin: 0 4px;
-  		background: #ccc;
+  		background: #bbb;
   		border-radius: 50%;
   		cursor: pointer;
 	  }
+	  .slideshow .dot.active { background: #333; }
 
-	  .dots span.active {
-  		background: #555;
-	  }
-
-	  /* 圖片下方標題 */
-	  .caption {
-  		text-align: center;
-  		margin-top: 6px;
+	  /* caption 置中在圖片下方 */
+	  .slideshow .caption {
+  		position: absolute;
+  		bottom: 10px;
+  		left: 50%;
+  		transform: translateX(-50%);
+  		color: white;
+  		font-size: 18px;
   		font-weight: bold;
+  		text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  		background: rgba(0,0,0,0.2);
+  		padding: 4px 8px;
+  		border-radius: 4px;
+  		z-index: 2;
 	  }
 @media (max-width: 768px) {
   nav {
@@ -574,6 +582,7 @@ document.querySelectorAll(".slideshow").forEach(slideshow => {
 });
 </script>
 </html>
+
 
 
 
