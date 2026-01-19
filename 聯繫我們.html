@@ -273,7 +273,7 @@
   		<div class="marquee-text" id="marquee-text">
     		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜，誠摯邀請您參加～
   		</div>
-  		<button id="toggle-marquee">⏸ 停止公告</button>
+  		<button id="toggle-marquee">⏸ 暫停公告</button>
 	  </div>
 	  
 
@@ -397,9 +397,16 @@
 
     // 點 ☰ 打開/收回
     hamburger.addEventListener("click", function(e) {
-      e.stopPropagation(); // 避免立刻被「點外面」事件關掉
-      navMenu.classList.toggle("show");
-    });
+  		e.preventDefault();
+	    e.stopPropagation();
+  		navMenu.classList.toggle("show");
+		// 🔒 暫時鎖住連結點擊（避免手機誤判）
+  		setTimeout(() => {
+    		document.querySelectorAll("nav a").forEach(a => {
+      		a.blur();
+    	});
+  	  }, 0);
+	});
 
     // 點空白處收回
     document.addEventListener("click", function(e) {
@@ -429,7 +436,7 @@
   btn.addEventListener("click", () => {
     isPaused = !isPaused;
     marquee.classList.toggle("paused", isPaused);
-    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 停止公告";
+    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 暫停公告";
   });
   // 🖥 桌機 hover 停止（只有滑鼠裝置才會有）
   marqueeArea.addEventListener("mouseenter", () => {
@@ -441,6 +448,7 @@
 </script>
 
 </html>
+
 
 
 
