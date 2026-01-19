@@ -273,7 +273,7 @@
   		<div class="marquee-text" id="marquee-text">
     		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜，誠摯邀請您參加～
   		</div>
-  		<button id="toggle-marquee">⏸ 停止公告</button>
+  		<button id="toggle-marquee">⏸ 暫停公告</button>
 	  </div>
 	  
 
@@ -309,8 +309,9 @@
 	</nav>
     <div class="content">
       <h2>歡迎來到興雅三一堂網站</h2>
-      <p>我們教會目前主要邀請的外聘講員為黃德福牧師，也曾經邀請過鄭頌苑牧師為我們證道。</p>
-	  <p>有興趣的弟兄姊妹或者教會外的朋友可以踴躍參加！</p>
+      <p>目前本堂主日證道以本堂牧者為主，並不定期邀請外聘講員。</p>
+	  <p>過去曾蒙黃德福牧師、鄭頌苑牧師等牧者蒞臨證道，成為本堂寶貴的祝福。</p>
+	  <p>歡迎弟兄姊妹與教會外的朋友踴躍參加主日崇拜，一同領受主的恩典。</p>
       <!-- 在這裡添加更多內容 -->
     </div>
 	<div id="ai-helper" style="border:1px solid #ccc; padding:10px; max-width:400px; background:#f9f9f9; border-radius:8px;">
@@ -397,9 +398,16 @@
 
     // 點 ☰ 打開/收回
     hamburger.addEventListener("click", function(e) {
-      e.stopPropagation(); // 避免立刻被「點外面」事件關掉
-      navMenu.classList.toggle("show");
-    });
+  		e.preventDefault();
+  		e.stopPropagation();
+  		navMenu.classList.toggle("show");
+		// 🔒 暫時鎖住連結點擊（避免手機誤判）
+  		setTimeout(() => {
+    		document.querySelectorAll("nav a").forEach(a => {
+      		a.blur();
+    	});
+  	  }, 0);
+	});
 
     // 點空白處收回
     document.addEventListener("click", function(e) {
@@ -429,7 +437,7 @@
   btn.addEventListener("click", () => {
     isPaused = !isPaused;
     marquee.classList.toggle("paused", isPaused);
-    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 停止公告";
+    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 暫停公告";
   });
   // 🖥 桌機 hover 停止（只有滑鼠裝置才會有）
   marqueeArea.addEventListener("mouseenter", () => {
@@ -441,6 +449,7 @@
 </script>
 
 </html>
+
 
 
 
