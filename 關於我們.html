@@ -181,6 +181,32 @@
   		background: rgba(0,0,0,0.1);
   		cursor: pointer;
 	  }
+		
+	  /* 地圖容器：所有裝置共用 */
+	  .map-container {
+  		position: relative;
+  		width: 100%;
+  		padding-bottom: 56.25%;
+  		height: 0;
+  		overflow: hidden;
+  		border-radius: 8px;
+	  }
+
+	  .map-container iframe {
+  		position: absolute;
+  		top: 0;
+  		left: 0;
+  		width: 100%;
+  		height: 100%;
+  		border: 0;
+	  }
+
+	  .map-note {
+  		margin-top: 8px;
+  		font-size: 0.9rem;
+  		color: #666;
+  		text-align: center;
+	  }
 @media (max-width: 768px) {
   nav {
     margin: 0 7px;       /* 左右縮 7px */
@@ -273,7 +299,7 @@
   		<div class="marquee-text" id="marquee-text">
     		📢 歡迎來到興雅三一堂！每週日早上10點都有主日崇拜，誠摯邀請您參加～
   		</div>
-  		<button id="toggle-marquee">⏸ 停止公告</button>
+  		<button id="toggle-marquee">⏸ 暫停公告</button>
 	  </div>
 	  
 
@@ -311,16 +337,15 @@
   		<h2>歡迎來到興雅三一堂網站</h2>
   		<p>我們是位於台北市中山區松江路的教會，如果您有意願的話，都歡迎來我們教會一起聚會</p>
 
-  		<iframe 
-		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d738.1705711399037!2d121.53439235231728!3d25.059803039351173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a95f2d6eeb6b%3A0xf7dd3abb6d830442!2z5Y-w5YyX5biC5Z-6552j5pWZ5pyD6IiI6ZuF5LiJ5LiA5aCC!5e0!3m2!1szh-TW!2stw!4v1768207252665!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-    	width="600" 
-    	height="450" 
-    	style="border:0;" 
-    	allowfullscreen="" 
-    	loading="lazy" 
-    	referrerpolicy="no-referrer-when-downgrade">
-  		</iframe>
-
+  		<div class="map-container">
+  		  <iframe 
+    		src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d738.1705711399037!2d121.53439235231728!3d25.059803039351173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a95f2d6eeb6b%3A0xf7dd3abb6d830442!2z5Y-w5YyX5biC5Z-6552j5pWZ5pyD6IiI6ZuF5LiJ5LiA5aCC!5e0!3m2!1szh-TW!2stw!4v1768207252665!5m2!1szh-TW!2stw"
+    		allowfullscreen
+    		loading="lazy"
+    		referrerpolicy="no-referrer-when-downgrade">
+  		  </iframe>
+		</div>
+		<p class="map-note">📍 點擊地圖可放大查看路線（支援手機操作）</p>
   		<p>我們教會位於行天宮站3號出口</p>
   		<p>如果用google地圖要查詢地址為：台北市中山區松江路259巷33號B1或直接搜尋台北市基督教會興雅三一堂中山區</p>
   		<p>如欲前往需要走彰化銀行旁259巷左轉一直走到咖啡廳後左轉才會看的到入口喔~</p>
@@ -409,9 +434,16 @@
 
     // 點 ☰ 打開/收回
     hamburger.addEventListener("click", function(e) {
-      e.stopPropagation(); // 避免立刻被「點外面」事件關掉
-      navMenu.classList.toggle("show");
-    });
+  		e.preventDefault();
+  		e.stopPropagation();
+   		navMenu.classList.toggle("show");
+  		// 🔒 暫時鎖住連結點擊（避免手機誤判）
+  		setTimeout(() => {
+    		document.querySelectorAll("nav a").forEach(a => {
+      		a.blur();
+    	});
+  	  }, 0);
+	});
 
     // 點空白處收回
     document.addEventListener("click", function(e) {
@@ -441,7 +473,7 @@
   btn.addEventListener("click", () => {
     isPaused = !isPaused;
     marquee.classList.toggle("paused", isPaused);
-    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 停止公告";
+    btn.textContent = isPaused ? "▶️ 播放公告" : "⏸ 暫停公告";
   });
   // 🖥 桌機 hover 停止（只有滑鼠裝置才會有）
   marqueeArea.addEventListener("mouseenter", () => {
@@ -453,24 +485,4 @@
 </script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
