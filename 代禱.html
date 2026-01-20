@@ -432,6 +432,12 @@
 		    e.preventDefault();
 		    e.stopPropagation();
 			const li = this.parentElement;
+			// 🔒 先關掉其他已開的子選單
+    		document.querySelectorAll(".has-submenu.open").forEach(openLi => {
+      			if (openLi !== li) {
+        			openLi.classList.remove("open");
+      			}
+    		});
     		li.classList.toggle("open");
   		});
 	});
@@ -473,6 +479,7 @@
 </script>
 
 </html>
+
 
 
 
