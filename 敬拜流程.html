@@ -332,12 +332,14 @@
 	  <p>讀經</p>
 	  <p>牧師證道</p>
 	  <p>聖餐(第一禮拜才會有)</p>
+	  <p>清明追思(四月才會有)</p>
 	  <p>奉獻禱告</p>
 	  <p>奉獻(讚美詩歌本第383或384首)</p>
 	  <p>奉獻祝福</p>
+	  <p>表演節目</p>
 	  <p>迎新(如果有新的弟兄姊妹)</p>
 	  <p>報告事項</p>
-	  <p>頌榮(讚美詩歌本11首)</p>
+	  <p>頌榮(讚美詩歌本11首)(聖誕節時唱平安夜)</p>
 	  <p>祝禱</p>
 	  <p>阿門頌</p>
 	  
@@ -436,19 +438,21 @@
 	document.querySelectorAll(".has-submenu > a").forEach(link => {
   		link.addEventListener("click", function (e) {
     		if (window.innerWidth > 768) return;
-		    e.preventDefault();
-		    e.stopPropagation();
-			const li = this.parentElement;
-			// 🔒 先關掉其他已開的子選單
-    		document.querySelectorAll(".has-submenu.open").forEach(openLi => {
-      			if (openLi !== li) {
-        			openLi.classList.remove("open");
-      			}
-    		});
-    		li.classList.toggle("open");
-  		});
+		    const li = this.parentElement;
+    		const isOpen = li.classList.contains("open");
+		    if (!isOpen) {
+      		// 第一次點：只展開，不跳頁
+      			e.preventDefault();
+      			e.stopPropagation();
+	        // 先關掉其他已開的子選單
+      			document.querySelectorAll(".has-submenu.open").forEach(openLi => {
+        		openLi.classList.remove("open");
+      		});
+	        li.classList.add("open");
+    	  }
+    	  // 第二次點：不 prevent → 正常進頁面
+  	  });
 	});
-
 	// 點 nav 裡，不要傳到 document
 	navMenu.addEventListener("click", function (e) {
   		e.stopPropagation();
@@ -486,6 +490,7 @@
 </script>
 
 </html>
+
 
 
 
