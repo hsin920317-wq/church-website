@@ -91,9 +91,11 @@
         min-width: 160px;
       }
 
-      nav li:hover ul {
-        display: block;
-      }
+      @media (hover: hover) and (pointer: fine) {
+  		nav li:hover > ul {
+    		display: block;
+  	  	}
+	  }
 
       nav li ul li {
         display: block;
@@ -218,7 +220,7 @@
   nav li ul {
     display: none;
   }
-  nav li ul.open {
+  nav li.open > ul {
     display: block;
   }
 
@@ -286,7 +288,7 @@
   <div class="hamburger">☰</div>
   <ul>
     <li><a href="教會網站.html">教會主頁</a></li>
-    <li>
+    <li class="has-submenu">
       <a href="關於我們.html">關於我們</a>
       <ul>
         <li><a href="牧師名單.html">牧師名單</a></li>
@@ -296,7 +298,7 @@
       </ul>
     </li>
     <li><a href="報告事項.html">報告事項</a></li>
-    <li>
+    <li class="has-submenu">
       <a href="有關教會服務.html">有關教會服務</a>
       <ul>
         <li><a href="代禱.html">代禱</a></li>
@@ -394,38 +396,46 @@
     </script>
 	<script>
     const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector("nav ul");
+	const navMenu = document.querySelector("nav ul");
 
-    // 點 ☰ 打開/收回
-    hamburger.addEventListener("click", function(e) {
+	// ☰ 開關主選單
+	hamburger.addEventListener("click", function (e) {
   		e.preventDefault();
   		e.stopPropagation();
-	    navMenu.classList.toggle("show");
-  		// 🔒 暫時鎖住連結點擊（避免手機誤判）
-  		setTimeout(() => {
-    		document.querySelectorAll("nav a").forEach(a => {
-      		a.blur();
-    	});
-  	  }, 0);
+  		navMenu.classList.toggle("show");
 	});
 
-    // 點空白處收回
-    document.addEventListener("click", function(e) {
-      if (navMenu.classList.contains("show") &&
-          !navMenu.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        navMenu.classList.remove("show");
-      }
-    });
+	// 子選單（關於我們）
+	document.querySelectorAll(".has-submenu > a").forEach(link => {
+  		link.addEventListener("click", function (e) {
+    		if (window.innerWidth > 768) return;
+		    e.preventDefault();
+		    e.stopPropagation();
+			const li = this.parentElement;
+			// 🔒 先關掉其他已開的子選單
+    		document.querySelectorAll(".has-submenu.open").forEach(openLi => {
+      			if (openLi !== li) {
+        			openLi.classList.remove("open");
+      			}
+    		});
+    		li.classList.toggle("open");
+  		});
+	});
 
-	document.querySelectorAll("nav > ul > li > a").forEach(link => {
-      link.addEventListener("click", function(e) {
-        const submenu = this.nextElementSibling;
-        if (submenu && window.innerWidth <= 768) {
-          e.preventDefault();
-          submenu.classList.toggle("open");
-        }
-  	  });
+	// 點 nav 裡，不要傳到 document
+	navMenu.addEventListener("click", function (e) {
+  		e.stopPropagation();
+	});
+
+	// 點空白處
+	document.addEventListener("click", function () {
+  		if (window.innerWidth > 768) return;
+  		const openSubmenu = document.querySelector(".has-submenu.open");
+  		if (openSubmenu) {
+    		openSubmenu.classList.remove("open");
+  		} else {
+    		navMenu.classList.remove("show");
+  		}
 	});
   </script>
   <script>
@@ -449,6 +459,7 @@
 </script>
 
 </html>
+
 
 
 
