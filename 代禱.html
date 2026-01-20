@@ -430,13 +430,21 @@
 	});
 
     // 點空白處收回
-    document.addEventListener("click", function(e) {
-      if (navMenu.classList.contains("show") &&
-          !navMenu.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        navMenu.classList.remove("show");
-      }
-    });
+    document.addEventListener("click", function (e) {
+  		if (window.innerWidth > 768) return;
+  		const isClickInsideNav = navMenu.contains(e.target);
+  		const isClickHamburger = hamburger.contains(e.target);
+  		const hasOpenSubmenu = document.querySelector(".has-submenu.open");
+  		// 點在 nav 或 hamburger 裡 → 不處理
+  		if (isClickInsideNav || isClickHamburger) return;
+  		// 如果有子選單開著 → 只關子選單（回上一層）
+  		if (hasOpenSubmenu) {
+    		hasOpenSubmenu.classList.remove("open");
+  		} else {
+    	// 沒有子選單 → 才整個關 hamburger
+    		navMenu.classList.remove("show");
+  		}
+	  });
 
 	document.querySelectorAll("nav > ul > li > a").forEach(link => {
       link.addEventListener("click", function(e) {
@@ -469,6 +477,7 @@
 </script>
 
 </html>
+
 
 
 
