@@ -91,9 +91,11 @@
         min-width: 160px;
       }
 
-      nav li:hover ul {
-        display: block;
-      }
+      @media (hover: hover) and (pointer: fine) {
+  		nav li:hover > ul {
+    		display: block;
+  	  	}
+	  }
 
       nav li ul li {
         display: block;
@@ -218,7 +220,7 @@
   nav li ul {
     display: none;
   }
-  nav li ul.open {
+  nav li.open > ul {
     display: block;
   }
 
@@ -426,13 +428,12 @@
 	// 子選單（關於我們）
 	document.querySelectorAll(".has-submenu > a").forEach(link => {
   		link.addEventListener("click", function (e) {
-    	if (window.innerWidth > 768) return;
-    	e.preventDefault();
-    	e.stopPropagation();
-    	const li = this.parentElement;
-   	 	// 第二次點＝回上一層
-    	li.classList.toggle("open");
-  	  });
+    		if (window.innerWidth > 768) return;
+		    e.preventDefault();
+		    e.stopPropagation();
+			const li = this.parentElement;
+    		li.classList.toggle("open");
+  		});
 	});
 
 	// 點 nav 裡，不要傳到 document
@@ -444,11 +445,9 @@
 	document.addEventListener("click", function () {
   		if (window.innerWidth > 768) return;
   		const openSubmenu = document.querySelector(".has-submenu.open");
-	  	if (openSubmenu) {
-    	// 先關子選單（回上一層）
+  		if (openSubmenu) {
     		openSubmenu.classList.remove("open");
   		} else {
-    	// 再關 hamburger
     		navMenu.classList.remove("show");
   		}
 	});
@@ -474,6 +473,7 @@
 </script>
 
 </html>
+
 
 
 
