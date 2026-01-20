@@ -333,6 +333,7 @@
 	  <p>6. 求主耶穌的寶血遮蓋護衛我，耶穌在十字架上所流的寶血，砍斷疾病的試探從我的身上出去。主耶穌復活生命的大能，代替我的軟弱，擔當我的疾病，求聖靈的大能充滿我，讓主復活生命的權能，使我脫離疾病的綑綁。我宣告耶穌的得勝，成為我的得勝。</p>
       <p>7. 請為我們自己的孩子禱告，懇求上帝保守孩子們的心思意念，在真理中建立堅定的根基，勝過世界與撒旦誘惑的力量，一生過敬畏上帝的生活。願聖靈大大感動 孩子們充滿愛主的心，認識神、敬畏神，一生因敬虔愛主而蒙福。</p>
       <p>8. 求主保守弟兄姐妹的工作和事業順利，家庭的收入穩定。</p>
+	  <p>以上為每日的宣告與禱告，希望透過簡短與上帝親近的時間能讓弟兄姊妹與教會外的朋友更加感受到上帝的同在</p>
 	  
       <!-- 在這裡添加更多內容 -->
     </div>
@@ -429,19 +430,21 @@
 	document.querySelectorAll(".has-submenu > a").forEach(link => {
   		link.addEventListener("click", function (e) {
     		if (window.innerWidth > 768) return;
-		    e.preventDefault();
-		    e.stopPropagation();
-			const li = this.parentElement;
-			// 🔒 先關掉其他已開的子選單
-    		document.querySelectorAll(".has-submenu.open").forEach(openLi => {
-      			if (openLi !== li) {
-        			openLi.classList.remove("open");
-      			}
-    		});
-    		li.classList.toggle("open");
-  		});
+		    const li = this.parentElement;
+    		const isOpen = li.classList.contains("open");
+		    if (!isOpen) {
+      		// 第一次點：只展開，不跳頁
+      			e.preventDefault();
+      			e.stopPropagation();
+	        // 先關掉其他已開的子選單
+      			document.querySelectorAll(".has-submenu.open").forEach(openLi => {
+        		openLi.classList.remove("open");
+      		});
+	        li.classList.add("open");
+    	  }
+    	  // 第二次點：不 prevent → 正常進頁面
+  	  });
 	});
-
 	// 點 nav 裡，不要傳到 document
 	navMenu.addEventListener("click", function (e) {
   		e.stopPropagation();
@@ -479,37 +482,4 @@
 </script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
