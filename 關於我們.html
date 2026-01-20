@@ -447,17 +447,20 @@
 	document.querySelectorAll(".has-submenu > a").forEach(link => {
   		link.addEventListener("click", function (e) {
     		if (window.innerWidth > 768) return;
-		    e.preventDefault();
-		    e.stopPropagation();
-			const li = this.parentElement;
-			// 🔒 先關掉其他已開的子選單
-    		document.querySelectorAll(".has-submenu.open").forEach(openLi => {
-      			if (openLi !== li) {
-        			openLi.classList.remove("open");
-      			}
-    		});
-    		li.classList.toggle("open");
-  		});
+		    const li = this.parentElement;
+    		const isOpen = li.classList.contains("open");
+		    if (!isOpen) {
+      		// 第一次點：只展開，不跳頁
+      			e.preventDefault();
+      			e.stopPropagation();
+	        // 先關掉其他已開的子選單
+      			document.querySelectorAll(".has-submenu.open").forEach(openLi => {
+        		openLi.classList.remove("open");
+      		});
+	        li.classList.add("open");
+    	  }
+    	  // 第二次點：不 prevent → 正常進頁面
+  	  });
 	});
 
 	// 點 nav 裡，不要傳到 document
@@ -497,5 +500,6 @@
 </script>
 
 </html>
+
 
 
